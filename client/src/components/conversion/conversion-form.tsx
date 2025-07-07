@@ -42,18 +42,17 @@ export default function ConversionForm() {
           description: "Your MP3 is ready for download.",
         });
       } else {
-        toast({
-          title: "Conversion Failed",
-          description: data.error || "An error occurred during conversion.",
-          variant: "destructive",
+        setConversionResult({
+          success: false,
+          error: data.error || "An error occurred during conversion.",
+          details: data.details
         });
       }
     },
     onError: (error: any) => {
-      toast({
-        title: "Conversion Failed",
-        description: error.message || "Please check the URL and try again.",
-        variant: "destructive",
+      setConversionResult({
+        success: false,
+        error: error.message || "Please check the URL and try again."
       });
     },
   });
