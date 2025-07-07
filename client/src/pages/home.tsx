@@ -1,7 +1,6 @@
 import { motion } from "framer-motion";
 import { Music, Rocket, Shield, Leaf } from "lucide-react";
 import ConversionForm from "@/components/conversion/conversion-form";
-import DebugIconTest from "@/components/debug-icon-test";
 
 export default function Home() {
   const features = [
@@ -28,7 +27,6 @@ export default function Home() {
   return (
     <section className="py-12 bg-gradient-to-br from-cream to-forest-100">
       <div className="max-w-4xl mx-auto px-4">
-        <DebugIconTest />
         {/* Hero Header */}
         <motion.div 
           className="text-center mb-12"
