@@ -144,14 +144,14 @@ export default function ConversionForm() {
         >
           <Button 
             type="submit"
-            className="w-full bg-forest-500 hover:bg-forest-700 text-white font-bold py-6 px-8 rounded-comic comic-button-shadow transition-all duration-200 text-xl font-comic"
+            className="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-6 px-8 rounded-comic comic-button-shadow transition-all duration-200 text-xl font-comic border-2 border-green-800"
             disabled={convertMutation.isPending}
           >
             <div className="flex items-center justify-center gap-3">
-              <div className="w-8 h-8 bg-yellow-200 rounded-full flex items-center justify-center">
+              <div className="w-8 h-8 bg-yellow-300 rounded-full flex items-center justify-center border-2 border-yellow-500">
                 <Zap className="text-yellow-800 w-5 h-5" />
               </div>
-              <span className="font-bold">🌿 EcoConvert Now!</span>
+              <span className="font-bold text-white">🌿 EcoConvert Now!</span>
             </div>
           </Button>
         </motion.div>

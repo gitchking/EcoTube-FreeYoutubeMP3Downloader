@@ -110,7 +110,7 @@ export default function Contact() {
             >
               <Button 
                 onClick={handleReset}
-                className="bg-forest-500 hover:bg-forest-700 text-white font-bold py-3 px-6 rounded-comic comic-button-shadow font-comic"
+                className="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-comic comic-button-shadow font-comic border-2 border-green-800"
               >
                 Send Another Message
               </Button>
@@ -217,7 +217,7 @@ export default function Contact() {
             >
               <Button 
                 type="submit" 
-                className="w-full bg-forest-500 hover:bg-forest-700 text-white font-bold py-4 px-8 rounded-comic comic-button-shadow transition-all duration-200 text-lg font-comic"
+                className="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-4 px-8 rounded-comic comic-button-shadow transition-all duration-200 text-lg font-comic border-2 border-green-800"
                 disabled={contactMutation.isPending}
               >
                 <span className="flex items-center justify-center">
