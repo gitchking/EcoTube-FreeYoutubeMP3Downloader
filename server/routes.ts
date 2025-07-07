@@ -150,10 +150,12 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
           ytDlp.stdout.on('data', (data) => {
             const output = data.toString();
-            // Extract title from yt-dlp output
-            const titleMatch = output.match(/\[download\] Destination: (.+)/);
+            // Extract title from yt-dlp output - multiple patterns to catch title
+            const titleMatch = output.match(/\[download\] Destination: (.+)/) || 
+                             output.match(/\[info\] (.+): Downloading/) ||
+                             output.match(/\[youtube\] (.+): Downloading/);
             if (titleMatch) {
-              videoTitle = path.basename(titleMatch[1], '.mp3');
+              videoTitle = path.basename(titleMatch[1], '.mp3').replace(/\.[^/.]+$/, "");
             }
           });
 
@@ -168,8 +170,16 @@ export async function registerRoutes(app: Express): Promise<Server> {
               if (files.length > 0) {
                 const filePath = path.join(tempDir, files[0]);
                 
+                // Clean filename for download
+                const cleanTitle = (videoTitle || 'audio').replace(/[^\w\s-]/g, '').trim();
+                const filename = `${cleanTitle}.mp3`;
+                
+                // Set proper headers for MP3 download
+                res.setHeader('Content-Type', 'audio/mpeg');
+                res.setHeader('Content-Disposition', `attachment; filename="${filename}"`);
+                
                 // Serve the file for download
-                res.download(filePath, `${videoTitle || 'audio'}.mp3`, (err) => {
+                res.download(filePath, filename, (err) => {
                   if (err) {
                     console.error('Download error:', err);
                   }

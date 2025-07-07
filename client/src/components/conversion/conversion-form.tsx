@@ -29,7 +29,7 @@ export default function ConversionForm() {
         const contentDisposition = response.headers.get('content-disposition');
         let title = `YouTube Audio - ${data.quality}`;
         if (contentDisposition) {
-          const titleMatch = contentDisposition.match(/filename="(.+)"/);
+          const titleMatch = contentDisposition.match(/filename="(.+\.mp3)"/);
           if (titleMatch) {
             title = titleMatch[1].replace('.mp3', '');
           }
