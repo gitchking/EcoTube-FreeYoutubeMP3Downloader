@@ -3,7 +3,7 @@ import { Leaf } from "lucide-react";
 
 export default function Footer() {
   return (
-    <footer className="bg-forest-100 border-t-4 border-forest-300 py-4 border-2 border-black">
+    <footer className="bg-forest-100 dark:bg-gray-800 border-t-4 border-forest-300 dark:border-gray-600 py-4 border-2 border-black dark:border-white dotted-pattern">
       <div className="max-w-6xl mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 items-center">
           <motion.div 
@@ -12,12 +12,12 @@ export default function Footer() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <div className="w-8 h-8 bg-forest-200 rounded-comic flex items-center justify-center border-2 border-forest-400 comic-shadow border-2 border-black">
-              <Leaf className="text-forest-800 w-4 h-4" />
+            <div className="w-8 h-8 bg-forest-200 dark:bg-gray-600 rounded-comic flex items-center justify-center border-2 border-forest-400 dark:border-gray-400 comic-shadow border-2 border-black dark:border-white">
+              <Leaf className="text-forest-800 dark:text-gray-200 w-4 h-4" />
             </div>
             <div>
-              <h3 className="text-xl font-bold font-comic text-forest-800">EcoTube</h3>
-              <p className="text-forest-600 font-nunito text-sm">Premium Convertor</p>
+              <h3 className="text-xl font-bold font-comic text-forest-800 dark:text-gray-200">EcoTube</h3>
+              <p className="text-forest-600 dark:text-gray-400 font-nunito text-sm">Premium Convertor</p>
             </div>
           </motion.div>
           
@@ -27,7 +27,7 @@ export default function Footer() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            <p className="text-forest-600">&copy; 2024 EcoTube 🌿</p>
+            <p className="text-forest-600 dark:text-gray-400">&copy; 2024 EcoTube 🌿</p>
           </motion.div>
           
           <motion.div 
@@ -37,8 +37,8 @@ export default function Footer() {
             transition={{ duration: 0.5, delay: 0.1 }}
           >
             <div className="flex space-x-4">
-              <a href="/privacy" className="text-forest-700 hover:text-comic-orange transition-colors">Privacy Policy</a>
-              <a href="/terms" className="text-forest-700 hover:text-comic-orange transition-colors">Terms of Service</a>
+              <a href="/privacy" className="text-forest-700 dark:text-gray-300 hover:text-comic-orange dark:hover:text-orange-400 transition-colors">Privacy Policy</a>
+              <a href="/terms" className="text-forest-700 dark:text-gray-300 hover:text-comic-orange dark:hover:text-orange-400 transition-colors">Terms of Service</a>
             </div>
           </motion.div>
         </div>

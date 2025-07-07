@@ -168,6 +168,14 @@
     background-color: hsl(var(--ocean-700));
   }
 
+  .bg-comic-orange {
+    background-color: hsl(var(--comic-orange));
+  }
+
+  .bg-comic-yellow {
+    background-color: hsl(var(--comic-yellow));
+  }
+
   .text-forest-50 {
     color: hsl(var(--forest-50));
   }
@@ -185,23 +193,11 @@
   }
 
   .text-forest-600 {
-    color: hsl(140, 40%, 30%);
-  }
-
-  .text-forest-800 {
-    color: hsl(140, 55%, 15%);
-  }
-
-  .border-forest-400 {
-    border-color: hsl(140, 30%, 50%);
+    color: hsl(140, 35%, 30%);
   }
 
   .text-forest-700 {
     color: hsl(var(--forest-700));
-  }
-
-  .text-forest-800 {
-    color: hsl(var(--forest-800));
   }
 
   .text-forest-900 {
@@ -228,12 +224,28 @@
     border-color: hsl(var(--forest-300));
   }
 
-  .border-forest-400 {
-    border-color: hsl(var(--forest-400));
-  }
-
   .border-forest-500 {
     border-color: hsl(var(--forest-500));
+  }
+
+  .focus\:border-forest-500:focus {
+    border-color: hsl(var(--forest-500));
+  }
+
+  .focus\:ring-forest-100:focus {
+    --tw-ring-color: hsl(var(--forest-100));
+  }
+
+  .hover\:bg-forest-100:hover {
+    background-color: hsl(var(--forest-100));
+  }
+
+  .hover\:bg-forest-700:hover {
+    background-color: hsl(var(--forest-700));
+  }
+
+  .hover\:text-comic-orange:hover {
+    color: hsl(var(--comic-orange));
   }
 }
 

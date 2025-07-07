@@ -125,3 +125,12 @@ Changelog:
   * Fixed navigation and footer logo icons with better contrast
   * Improved layout structure to prevent footer overlap using flexbox
   * Enhanced eco-comic theme with consistent icon styling across all components
+- July 07, 2025. Enhanced user interface and theme functionality:
+  * Increased URL input text size from text-2xl to text-3xl for better readability
+  * Centered footer copyright text within website content boundaries
+  * Added comprehensive dark mode support with theme toggle switch
+  * Implemented dotted pattern backgrounds for header and footer (comic effect)
+  * Added purple color selection highlighting for active navigation items
+  * Created theme provider with localStorage persistence
+  * Enhanced mobile navigation with consistent dark mode styling
+  * Preserved all comic shadow effects and design elements
