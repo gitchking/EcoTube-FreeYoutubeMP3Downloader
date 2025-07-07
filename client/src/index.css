@@ -240,6 +240,20 @@
 }
 
 @layer utilities {
+  .comic-shadow {
+    box-shadow: 4px 4px 0px rgba(0, 0, 0, 1);
+  }
+
+  .rounded-comic {
+    border-radius: 1rem;
+  }
+
+  .comic-shadow-hover {
+    box-shadow: 8px 8px 0px rgba(74, 124, 89, 0.4);
+  }
+}
+
+@layer utilities {
   .animate-bounce-soft {
     animation: bounce 2s infinite;
   }
