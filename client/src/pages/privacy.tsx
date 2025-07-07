@@ -101,9 +101,9 @@ export default function Privacy() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.8 }}
         >
-          <div className="bg-green-100 border-3 border-green-300 rounded-comic p-6 border-2 border-black">
-            <h3 className="text-lg font-bold text-green-700 mb-2 font-comic">Questions About Privacy?</h3>
-            <p className="text-green-600 font-nunito">
+          <div className="bg-green-100 dark:bg-green-900 border-3 border-green-300 dark:border-green-700 rounded-comic p-6 border-2 border-black dark:border-white">
+            <h3 className="text-lg font-bold text-green-700 dark:text-green-300 mb-2 font-comic">Questions About Privacy?</h3>
+            <p className="text-green-600 dark:text-green-400 font-nunito">
               Contact our privacy team at <a href="mailto:privacy@ecotube.com" className="font-semibold hover:text-comic-orange transition-colors">privacy@ecotube.com</a>
             </p>
           </div>
