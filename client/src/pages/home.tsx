@@ -8,22 +8,22 @@ export default function Home() {
       icon: Rocket,
       title: "Lightning Fast",
       description: "Convert videos in seconds with our optimized processing",
-      iconColor: "text-ocean-500",
-      bgColor: "bg-ocean-100"
+      iconColor: "text-blue-700",
+      bgColor: "bg-blue-200"
     },
     {
       icon: Shield,
       title: "100% Secure",
       description: "Your data is never stored. Convert and download instantly",
-      iconColor: "text-green-600",
-      bgColor: "bg-green-100"
+      iconColor: "text-green-700",
+      bgColor: "bg-green-200"
     },
     {
       icon: Leaf,
       title: "Eco-Friendly",
       description: "Powered by green energy and optimized for efficiency",
-      iconColor: "text-comic-orange",
-      bgColor: "bg-orange-100"
+      iconColor: "text-orange-700",
+      bgColor: "bg-orange-200"
     }
   ];
 
@@ -38,7 +38,7 @@ export default function Home() {
           transition={{ duration: 0.6 }}
         >
           <motion.div 
-            className="w-32 h-32 mx-auto mb-6 bg-gradient-to-br from-forest-100 to-forest-300 rounded-full flex items-center justify-center comic-shadow border-4 border-forest-500"
+            className="w-32 h-32 mx-auto mb-6 bg-forest-200 rounded-full flex items-center justify-center comic-shadow border-4 border-forest-300"
             animate={{ 
               y: [0, -10, 0],
               rotate: [0, 5, -5, 0]
@@ -49,7 +49,7 @@ export default function Home() {
               ease: "easeInOut"
             }}
           >
-            <Music className="text-forest-700 w-16 h-16" />
+            <Music className="text-forest-800 w-16 h-16" />
           </motion.div>
           
           <motion.h2 

@@ -98,8 +98,8 @@ export default function ConversionForm() {
         {/* URL Input */}
         <div>
           <Label className="flex items-center text-lg font-bold text-forest-700 mb-3 font-comic">
-            <span className="w-8 h-8 bg-orange-100 rounded-full flex items-center justify-center mr-3">
-              <Link className="text-comic-orange w-4 h-4" />
+            <span className="w-8 h-8 bg-orange-200 rounded-full flex items-center justify-center mr-3">
+              <Link className="text-orange-800 w-4 h-4" />
             </span>
             Paste YouTube URL
           </Label>
@@ -118,8 +118,8 @@ export default function ConversionForm() {
         {/* Quality Selection */}
         <div>
           <Label className="flex items-center text-lg font-bold text-forest-700 mb-3 font-comic">
-            <span className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center mr-3">
-              <Sliders className="text-ocean-500 w-4 h-4" />
+            <span className="w-8 h-8 bg-blue-200 rounded-full flex items-center justify-center mr-3">
+              <Sliders className="text-blue-800 w-4 h-4" />
             </span>
             Audio Quality
           </Label>
