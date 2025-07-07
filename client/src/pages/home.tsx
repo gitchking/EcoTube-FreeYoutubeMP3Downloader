@@ -38,7 +38,7 @@ export default function Home() {
           transition={{ duration: 0.6 }}
         >
           <motion.div 
-            className="w-32 h-32 mx-auto mb-6 bg-forest-200 rounded-full flex items-center justify-center comic-shadow border-4 border-forest-300"
+            className="w-16 h-16 mx-auto mb-6 bg-forest-200 rounded-full flex items-center justify-center comic-shadow border-4 border-forest-300"
             animate={{ 
               y: [0, -10, 0],
               rotate: [0, 5, -5, 0]
@@ -49,7 +49,7 @@ export default function Home() {
               ease: "easeInOut"
             }}
           >
-            <Music className="text-forest-800 w-16 h-16" />
+            <Music className="text-forest-800 w-8 h-8" />
           </motion.div>
           
           <motion.h2 
