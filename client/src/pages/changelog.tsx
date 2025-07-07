@@ -15,7 +15,7 @@ export default function Changelog() {
         { icon: Plus, text: "Added 320kbps premium quality option", bgColor: "bg-green-200", iconColor: "text-green-800" },
         { icon: Zap, text: "40% faster conversion speeds", bgColor: "bg-orange-200", iconColor: "text-orange-800" },
         { icon: Smartphone, text: "Improved mobile interface", bgColor: "bg-blue-200", iconColor: "text-blue-800" },
-        { icon: Leaf, text: "Reduced server energy consumption by 25%", bgColor: "bg-forest-200", iconColor: "text-forest-800" }
+        { icon: Leaf, text: "Reduced server energy consumption by 25%", bgColor: "bg-red-200", iconColor: "text-red-800" }
       ]
     },
     {
