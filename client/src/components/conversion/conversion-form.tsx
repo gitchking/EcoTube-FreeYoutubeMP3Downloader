@@ -148,8 +148,8 @@ export default function ConversionForm() {
             disabled={convertMutation.isPending}
           >
             <div className="flex items-center justify-center gap-3">
-              <div className="w-8 h-8 bg-yellow-300 rounded-full flex items-center justify-center border-2 border-yellow-500">
-                <Zap className="text-yellow-800 w-5 h-5" />
+              <div className="w-8 h-8 bg-forest-200 rounded-full flex items-center justify-center border-2 border-forest-400">
+                <Zap className="text-forest-800 w-5 h-5" />
               </div>
               <span className="font-bold text-white">Convert</span>
             </div>

@@ -232,8 +232,8 @@ export default function Contact() {
                     </>
                   ) : (
                     <>
-                      <span className="w-8 h-8 bg-blue-200 rounded-full flex items-center justify-center mr-3">
-                        <Send className="text-blue-800 w-4 h-4" />
+                      <span className="w-8 h-8 bg-forest-200 rounded-full flex items-center justify-center mr-3">
+                        <Send className="text-forest-800 w-4 h-4" />
                       </span>
                       Send Message
                     </>
