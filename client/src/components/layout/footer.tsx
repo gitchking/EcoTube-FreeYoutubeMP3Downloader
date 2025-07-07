@@ -3,7 +3,7 @@ import { Leaf } from "lucide-react";
 
 export default function Footer() {
   return (
-    <footer className="bg-forest-100 border-t-4 border-forest-300 py-4 border-2 border-black">
+    <footer className="bg-forest-100 dark:bg-card border-t-4 border-forest-300 dark:border-forest-500 py-4 border-2 border-black dark:border-gray-600">
       <div className="max-w-6xl mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 items-center">
           <motion.div 
