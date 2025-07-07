@@ -17,7 +17,7 @@ import Footer from "@/components/layout/footer";
 
 function Router() {
   return (
-    <div className="min-h-screen bg-cream dark:bg-background flex flex-col">
+    <div className="min-h-screen bg-cream dark:bg-background flex flex-col relative">
       <Navigation />
       <main className="flex-1 min-h-0">
         <Switch>
