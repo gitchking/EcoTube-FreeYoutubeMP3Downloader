@@ -96,7 +96,7 @@ export default function ConversionForm() {
       <form onSubmit={handleSubmit} className="space-y-6">
         {/* URL Input */}
         <div>
-          <Label className="flex items-center text-lg font-bold text-forest-700 dark:text-gray-200 mb-3 font-comic">
+          <Label className="flex items-center text-lg font-bold text-forest-700 dark:text-white mb-3 font-comic">
             <span className="w-8 h-8 bg-orange-200 dark:bg-orange-600 rounded-full flex items-center justify-center mr-3">
               <Link className="text-orange-800 dark:text-orange-200 w-4 h-4" />
             </span>
@@ -108,7 +108,7 @@ export default function ConversionForm() {
               placeholder="https://www.youtube.com/watch?v=..." 
               value={url}
               onChange={(e) => setUrl(e.target.value)}
-              className="w-full px-4 py-4 border-3 border-forest-300 dark:border-gray-600 rounded-comic focus:border-forest-500 dark:focus:border-purple-500 focus:outline-none focus:ring-4 focus:ring-forest-100 dark:focus:ring-purple-300 font-nunito text-3xl bg-white dark:bg-gray-700 text-black dark:text-white transition-all duration-200 h-16"
+              className="w-full px-4 py-4 border-3 border-forest-300 dark:border-white rounded-comic focus:border-forest-500 dark:focus:border-purple-500 focus:outline-none focus:ring-4 focus:ring-forest-100 dark:focus:ring-purple-300 font-nunito text-3xl bg-white dark:bg-black text-black dark:text-white transition-all duration-200 h-16"
               required
             />
           </div>
@@ -116,14 +116,14 @@ export default function ConversionForm() {
 
         {/* Quality Selection */}
         <div>
-          <Label className="flex items-center text-lg font-bold text-forest-700 dark:text-gray-200 mb-3 font-comic">
+          <Label className="flex items-center text-lg font-bold text-forest-700 dark:text-white mb-3 font-comic">
             <span className="w-8 h-8 bg-blue-200 dark:bg-blue-600 rounded-full flex items-center justify-center mr-3">
               <Sliders className="text-blue-800 dark:text-blue-200 w-4 h-4" />
             </span>
             Audio Quality
           </Label>
           <Select value={quality} onValueChange={setQuality}>
-            <SelectTrigger className="w-full px-4 py-4 border-3 border-forest-300 dark:border-gray-600 rounded-comic focus:border-forest-500 dark:focus:border-purple-500 focus:outline-none focus:ring-4 focus:ring-forest-100 dark:focus:ring-purple-300 font-nunito text-lg bg-white dark:bg-gray-700 text-black dark:text-white h-16">
+            <SelectTrigger className="w-full px-4 py-4 border-3 border-forest-300 dark:border-white rounded-comic focus:border-forest-500 dark:focus:border-purple-500 focus:outline-none focus:ring-4 focus:ring-forest-100 dark:focus:ring-purple-300 font-nunito text-lg bg-white dark:bg-black text-black dark:text-white h-16">
               <SelectValue />
             </SelectTrigger>
             <SelectContent>
