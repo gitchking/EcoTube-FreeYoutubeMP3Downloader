@@ -146,27 +146,13 @@ export default function ConversionResult({ result, onReset }: ConversionResultPr
         Conversion Complete! 🎉
       </motion.h3>
       
-      {result.title && (
-        <motion.div 
-          className="mb-4"
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.3, delay: 0.4 }}
-        >
-          <p className="text-sm text-green-600 font-nunito mb-1">Video Title:</p>
-          <p className="text-lg font-bold text-green-700 font-comic break-words px-2">
-            {result.title}
-          </p>
-        </motion.div>
-      )}
-      
       <motion.p 
         className="text-green-600 font-nunito mb-4"
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.3, delay: 0.5 }}
+        transition={{ duration: 0.3, delay: 0.4 }}
       >
-        Your MP3 is ready for download! 🎵
+        {result.title || "Your audio is ready!"}
       </motion.p>
       
       <motion.div 
