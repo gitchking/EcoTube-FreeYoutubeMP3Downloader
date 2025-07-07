@@ -108,7 +108,7 @@ export default function ConversionForm() {
               placeholder="https://www.youtube.com/watch?v=..." 
               value={url}
               onChange={(e) => setUrl(e.target.value)}
-              className="w-full px-4 py-4 border-3 border-forest-300 rounded-comic focus:border-forest-500 focus:outline-none focus:ring-4 focus:ring-forest-100 font-nunito text-2xl transition-all duration-200 h-16"
+              className="w-full px-4 py-4 border-3 border-forest-300 rounded-comic focus:border-forest-500 focus:outline-none focus:ring-4 focus:ring-forest-100 font-nunito text-3xl transition-all duration-200 h-16"
               required
             />
           </div>
