@@ -31,7 +31,6 @@ export default function Footer() {
             <div className="flex space-x-4">
               <a href="/privacy" className="text-forest-700 hover:text-comic-orange transition-colors">Privacy Policy</a>
               <a href="/terms" className="text-forest-700 hover:text-comic-orange transition-colors">Terms of Service</a>
-              <a href="#" className="text-forest-700 hover:text-comic-orange transition-colors">Carbon Neutral</a>
             </div>
           </motion.div>
         </div>

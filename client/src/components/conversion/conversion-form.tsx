@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { useMutation } from "@tanstack/react-query";
-import { Link, Zap, Sliders } from "lucide-react";
+import { Link, Zap, Sliders, Music } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
@@ -151,6 +151,7 @@ export default function ConversionForm() {
               <div className="w-8 h-8 bg-forest-200 rounded-full flex items-center justify-center border-2 border-forest-400">
                 <Zap className="text-forest-800 w-5 h-5" />
               </div>
+              <Music className="text-white w-5 h-5" />
               <span className="font-bold text-white">Convert</span>
             </div>
           </Button>
