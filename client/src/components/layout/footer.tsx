@@ -5,7 +5,7 @@ export default function Footer() {
   return (
     <footer className="bg-forest-100 border-t-4 border-forest-300 py-4 border-2 border-black">
       <div className="max-w-6xl mx-auto px-4">
-        <div className="flex flex-col space-y-4">
+        <div className="flex flex-col space-y-1">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-2 md:space-y-0">
             <motion.div 
               className="flex items-center space-x-3"
