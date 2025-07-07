@@ -41,8 +41,6 @@ EcoTube is a full-stack YouTube to MP3 conversion web application with an eco-fr
 - **Loading States**: Custom animated loading spinner with eco-themed icons
 - **Result Display**: Download interface with file cleanup
 - **Contact System**: Form submission with backend message storage
-- **Dark Mode**: Theme switching with persistent user preference storage
-- **Theme Switch**: Floating toggle button positioned bottom-right above footer
 
 ### Pages Structure
 - **Home**: Main conversion interface with feature highlights
@@ -127,9 +125,3 @@ Changelog:
   * Fixed navigation and footer logo icons with better contrast
   * Improved layout structure to prevent footer overlap using flexbox
   * Enhanced eco-comic theme with consistent icon styling across all components
-- July 07, 2025. Added dark mode support:
-  * Implemented ThemeProvider with localStorage persistence
-  * Added floating theme switch button (bottom-right above footer)
-  * Updated all components with dark mode variants
-  * Used CSS variables for consistent theming across light/dark modes
-  * Maintained eco-friendly color scheme in both themes

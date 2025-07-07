@@ -28,7 +28,7 @@ export default function Home() {
   ];
 
   return (
-    <section className="py-12 bg-gradient-to-br from-cream to-forest-100 dark:from-background dark:to-card">
+    <section className="py-12 bg-gradient-to-br from-cream to-forest-100">
       <div className="max-w-4xl mx-auto px-4">
         {/* Hero Header */}
         <motion.div 
