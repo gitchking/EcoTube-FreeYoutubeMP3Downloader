@@ -45,7 +45,7 @@ export default function Changelog() {
   ];
 
   return (
-    <section className="py-12 bg-forest-50 dark:bg-gray-900">
+    <section className="py-12 bg-forest-50 dark:bg-black">
       <div className="max-w-4xl mx-auto px-4">
         <motion.div 
           className="text-center mb-12"
@@ -66,7 +66,7 @@ export default function Changelog() {
           {versions.map((version, index) => (
             <motion.div
               key={version.version}
-              className="bg-white dark:bg-gray-800 rounded-comic p-6 comic-shadow border-2 border-black dark:border-white hover:shadow-[12px_12px_0px_rgba(74,124,89,0.4)] dark:hover:shadow-[12px_12px_0px_rgba(255,255,255,1)]"
+              className="bg-white dark:bg-black rounded-comic p-6 comic-shadow border-2 border-black dark:border-white hover:shadow-[12px_12px_0px_rgba(74,124,89,0.4)] dark:hover:shadow-[6px_6px_0px_rgba(255,255,255,1)]"
               initial={{ opacity: 0, x: -30 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}

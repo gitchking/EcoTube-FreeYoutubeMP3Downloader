@@ -55,7 +55,7 @@ export default function FAQs() {
   };
 
   return (
-    <section className="py-12 bg-white dark:bg-gray-900">
+    <section className="py-12 bg-white dark:bg-black">
       <div className="max-w-4xl mx-auto px-4">
         <motion.div 
           className="text-center mb-12"
@@ -76,13 +76,13 @@ export default function FAQs() {
           {faqs.map((faq, index) => (
             <motion.div 
               key={index}
-              className="bg-forest-50 dark:bg-gray-800 rounded-comic overflow-hidden comic-shadow border-2 border-black dark:border-white"
+              className="bg-forest-50 dark:bg-black rounded-comic overflow-hidden comic-shadow border-2 border-black dark:border-white"
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.4, delay: index * 0.1 }}
             >
               <motion.button 
-                className="w-full px-6 py-4 text-left flex items-center justify-between hover:bg-forest-100 dark:hover:bg-gray-700 transition-colors"
+                className="w-full px-6 py-4 text-left flex items-center justify-between hover:bg-forest-100 dark:hover:bg-gray-900 transition-colors"
                 onClick={() => toggleFAQ(index)}
                 whileHover={{ scale: 1.01 }}
                 whileTap={{ scale: 0.99 }}

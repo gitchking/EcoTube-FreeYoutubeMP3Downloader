@@ -28,7 +28,7 @@ export default function Home() {
   ];
 
   return (
-    <section className="py-12 bg-gradient-to-br from-cream to-forest-100 dark:from-gray-900 dark:to-gray-800">
+    <section className="py-12 bg-gradient-to-br from-cream to-forest-100 dark:from-black dark:to-gray-900">
       <div className="max-w-4xl mx-auto px-4">
         {/* Hero Header */}
         <motion.div 
@@ -38,7 +38,7 @@ export default function Home() {
           transition={{ duration: 0.6 }}
         >
           <motion.div 
-            className="w-16 h-16 mx-auto mb-6 bg-forest-200 dark:bg-gray-600 rounded-full flex items-center justify-center comic-shadow border-4 border-forest-300 dark:border-gray-400"
+            className="w-16 h-16 mx-auto mb-6 bg-forest-200 dark:bg-gray-800 rounded-full flex items-center justify-center comic-shadow border-4 border-forest-300 dark:border-white"
             animate={{ 
               y: [0, -10, 0],
               rotate: [0, 5, -5, 0]
@@ -49,11 +49,11 @@ export default function Home() {
               ease: "easeInOut"
             }}
           >
-            <Music className="text-forest-800 dark:text-gray-200 w-8 h-8" />
+            <Music className="text-forest-800 dark:text-white w-8 h-8" />
           </motion.div>
           
           <motion.h2 
-            className="text-5xl font-bold text-forest-700 dark:text-gray-200 mb-4 font-comic"
+            className="text-5xl font-bold text-forest-700 dark:text-white mb-4 font-comic"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
@@ -90,7 +90,7 @@ export default function Home() {
           {features.map((feature, index) => (
             <motion.div
               key={feature.title}
-              className="bg-white dark:bg-gray-800 rounded-comic p-6 comic-shadow text-center border-2 border-black dark:border-white"
+              className="bg-white dark:bg-black rounded-comic p-6 comic-shadow text-center border-2 border-black dark:border-white"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, delay: 0.6 + index * 0.1 }}
@@ -102,8 +102,8 @@ export default function Home() {
               <div className={`w-16 h-16 mx-auto mb-4 ${feature.bgColor} rounded-full flex items-center justify-center comic-shadow`}>
                 <feature.icon className={`${feature.iconColor} w-8 h-8`} />
               </div>
-              <h3 className="text-lg font-bold text-forest-700 dark:text-gray-200 mb-2 font-comic">{feature.title}</h3>
-              <p className="text-forest-600 dark:text-gray-400 font-nunito">{feature.description}</p>
+              <h3 className="text-lg font-bold text-forest-700 dark:text-white mb-2 font-comic">{feature.title}</h3>
+              <p className="text-forest-600 dark:text-gray-300 font-nunito">{feature.description}</p>
             </motion.div>
           ))}
         </motion.div>

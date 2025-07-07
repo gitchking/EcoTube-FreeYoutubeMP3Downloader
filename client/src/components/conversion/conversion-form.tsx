@@ -88,7 +88,7 @@ export default function ConversionForm() {
 
   return (
     <motion.div 
-      className="bg-white dark:bg-gray-800 rounded-comic p-8 comic-shadow max-w-2xl mx-auto border-2 border-black dark:border-white"
+      className="bg-white dark:bg-black rounded-comic p-8 comic-shadow max-w-2xl mx-auto border-2 border-black dark:border-white"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
