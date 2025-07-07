@@ -20,14 +20,14 @@ export default function Footer() {
               <p className="text-forest-600 font-nunito text-sm">Premium Convertor 🌱✨</p>
             </div>
           </motion.div>
-
+          
           <motion.div 
             className="flex flex-col md:flex-row items-center justify-center space-y-1 md:space-y-0 md:space-x-6 text-sm font-nunito"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
           >
-            <p className="text-forest-600">&copy; 2024 EcoTube 🌳🌿🍃</p>
+            <p className="text-forest-600">&copy; 2024 EcoTube 🌳</p>
             <div className="flex space-x-4">
               <a href="/privacy" className="text-forest-700 hover:text-comic-orange transition-colors">Privacy Policy</a>
               <a href="/terms" className="text-forest-700 hover:text-comic-orange transition-colors">Terms of Service</a>
