@@ -90,7 +90,7 @@ export default function Home() {
           {features.map((feature, index) => (
             <motion.div
               key={feature.title}
-              className="bg-white rounded-comic p-6 comic-shadow text-center"
+              className="bg-white rounded-comic p-6 comic-shadow text-center border-2 border-black"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, delay: 0.6 + index * 0.1 }}

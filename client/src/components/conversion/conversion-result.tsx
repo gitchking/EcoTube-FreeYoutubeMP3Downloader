@@ -37,7 +37,7 @@ export default function ConversionResult({ result, onReset }: ConversionResultPr
   if (!result.success) {
     return (
       <motion.div 
-        className="bg-red-50 border-3 border-red-300 rounded-comic p-6 text-center max-w-2xl mx-auto"
+        className="bg-red-50 border-3 border-red-300 rounded-comic p-6 text-center max-w-2xl mx-auto border-2 border-black"
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.5 }}
@@ -123,7 +123,7 @@ export default function ConversionResult({ result, onReset }: ConversionResultPr
   // Success State
   return (
     <motion.div 
-      className="bg-green-100 border-3 border-green-300 rounded-comic p-6 text-center max-w-2xl mx-auto"
+      className="bg-green-100 border-3 border-green-300 rounded-comic p-6 text-center max-w-2xl mx-auto border-2 border-black"
       initial={{ opacity: 0, scale: 0.9 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.5 }}
