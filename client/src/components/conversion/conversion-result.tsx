@@ -40,7 +40,7 @@ export default function ConversionResult({ result, onReset }: ConversionResultPr
         animate={{ scale: 1 }}
         transition={{ duration: 0.3, delay: 0.2 }}
       >
-        <Check className="text-white text-2xl" />
+        <Check className="text-white" size={24} />
       </motion.div>
       
       <motion.h3 

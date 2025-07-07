@@ -22,7 +22,7 @@ export default function LoadingSpinner({
         animate={{ rotate: 360 }}
         transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
       >
-        <Sprout className="text-white text-2xl" />
+        <Sprout className="text-white" size={24} />
       </motion.div>
       <p className="text-forest-700 font-bold text-lg font-comic">{message} 🌱</p>
       <p className="text-forest-600 font-nunito">{submessage}</p>

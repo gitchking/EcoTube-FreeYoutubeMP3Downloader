@@ -83,7 +83,7 @@ export default function FAQs() {
               >
                 <div className="flex items-center">
                   <div className={`w-8 h-8 ${faq.color} rounded-full flex items-center justify-center mr-4`}>
-                    <faq.icon className="text-white text-sm" />
+                    <faq.icon className="text-white" size={16} />
                   </div>
                   <span className="font-bold text-forest-700 font-comic">{faq.question}</span>
                 </div>
