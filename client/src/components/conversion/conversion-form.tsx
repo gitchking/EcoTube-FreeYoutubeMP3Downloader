@@ -147,13 +147,13 @@ export default function ConversionForm() {
             className="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-6 px-8 rounded-comic comic-button-shadow transition-all duration-200 text-xl font-comic border-2 border-green-800"
             disabled={convertMutation.isPending}
           >
-            <div className="flex items-center justify-center gap-3">
+            <>
               <div className="w-8 h-8 bg-forest-200 rounded-full flex items-center justify-center border-2 border-forest-400">
                 <Zap className="text-forest-800 w-5 h-5" />
               </div>
               <Music className="text-white w-5 h-5" />
               <span className="font-bold text-white">Convert</span>
-            </div>
+            </>
           </Button>
         </motion.div>
       </form>
