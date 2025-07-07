@@ -1,0 +1,274 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Comic+Neue:wght@300;400;700&family=Nunito:wght@300;400;600;700;800&display=swap');
+
+:root {
+  --background: hsl(60, 9%, 98%);
+  --foreground: hsl(120, 25%, 15%);
+  --muted: hsl(60, 4.8%, 95.9%);
+  --muted-foreground: hsl(25, 5.3%, 44.7%);
+  --popover: hsl(0, 0%, 100%);
+  --popover-foreground: hsl(120, 25%, 15%);
+  --card: hsl(0, 0%, 100%);
+  --card-foreground: hsl(120, 25%, 15%);
+  --border: hsl(120, 20%, 88%);
+  --input: hsl(120, 20%, 88%);
+  --primary: hsl(140, 35%, 35%);
+  --primary-foreground: hsl(60, 9%, 98%);
+  --secondary: hsl(60, 4.8%, 95.9%);
+  --secondary-foreground: hsl(24, 9.8%, 10%);
+  --accent: hsl(60, 4.8%, 95.9%);
+  --accent-foreground: hsl(24, 9.8%, 10%);
+  --destructive: hsl(0, 84.2%, 60.2%);
+  --destructive-foreground: hsl(60, 9.1%, 97.8%);
+  --ring: hsl(120, 25%, 15%);
+  --radius: 1.5rem;
+  --forest-50: hsl(120, 60%, 97%);
+  --forest-100: hsl(120, 35%, 92%);
+  --forest-300: hsl(120, 25%, 65%);
+  --forest-500: hsl(140, 35%, 35%);
+  --forest-700: hsl(140, 50%, 20%);
+  --forest-900: hsl(140, 60%, 10%);
+  --ocean-100: hsl(195, 53%, 94%);
+  --ocean-300: hsl(195, 53%, 79%);
+  --ocean-500: hsl(195, 36%, 55%);
+  --ocean-700: hsl(195, 46%, 35%);
+  --cream: hsl(60, 29%, 94%);
+  --comic-orange: hsl(20, 100%, 63%);
+  --comic-yellow: hsl(45, 93%, 53%);
+}
+
+.dark {
+  --background: hsl(140, 60%, 5%);
+  --foreground: hsl(60, 9%, 98%);
+  --muted: hsl(140, 20%, 15%);
+  --muted-foreground: hsl(120, 15%, 60%);
+  --popover: hsl(140, 60%, 8%);
+  --popover-foreground: hsl(60, 9%, 98%);
+  --card: hsl(140, 60%, 8%);
+  --card-foreground: hsl(60, 9%, 98%);
+  --border: hsl(140, 20%, 20%);
+  --input: hsl(140, 20%, 20%);
+  --primary: hsl(140, 35%, 45%);
+  --primary-foreground: hsl(140, 60%, 5%);
+  --secondary: hsl(140, 20%, 15%);
+  --secondary-foreground: hsl(60, 9%, 98%);
+  --accent: hsl(140, 20%, 15%);
+  --accent-foreground: hsl(60, 9%, 98%);
+  --destructive: hsl(0, 62.8%, 30.6%);
+  --destructive-foreground: hsl(0, 0%, 98%);
+  --ring: hsl(140, 35%, 45%);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply font-sans antialiased bg-background text-foreground;
+    font-family: 'Comic Neue', 'Nunito', sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Comic Neue', sans-serif;
+    font-weight: 700;
+  }
+
+  .font-comic {
+    font-family: 'Comic Neue', sans-serif;
+  }
+
+  .font-nunito {
+    font-family: 'Nunito', sans-serif;
+  }
+}
+
+@layer components {
+  .comic-shadow {
+    box-shadow: 8px 8px 0px rgba(74, 124, 89, 0.3);
+  }
+
+  .comic-button-shadow {
+    box-shadow: 4px 4px 0px rgba(74, 124, 89, 0.4);
+    transition: all 0.2s ease;
+  }
+
+  .comic-button-shadow:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0px rgba(74, 124, 89, 0.4);
+  }
+
+  .comic-button-shadow:active {
+    transform: translate(2px, 2px);
+    box-shadow: 2px 2px 0px rgba(74, 124, 89, 0.4);
+  }
+
+  .rounded-comic {
+    border-radius: 24px;
+  }
+
+  .border-3 {
+    border-width: 3px;
+  }
+
+  .bg-cream {
+    background-color: hsl(var(--cream));
+  }
+
+  .bg-forest-50 {
+    background-color: hsl(var(--forest-50));
+  }
+
+  .bg-forest-100 {
+    background-color: hsl(var(--forest-100));
+  }
+
+  .bg-forest-300 {
+    background-color: hsl(var(--forest-300));
+  }
+
+  .bg-forest-500 {
+    background-color: hsl(var(--forest-500));
+  }
+
+  .bg-forest-700 {
+    background-color: hsl(var(--forest-700));
+  }
+
+  .bg-forest-900 {
+    background-color: hsl(var(--forest-900));
+  }
+
+  .bg-ocean-100 {
+    background-color: hsl(var(--ocean-100));
+  }
+
+  .bg-ocean-300 {
+    background-color: hsl(var(--ocean-300));
+  }
+
+  .bg-ocean-500 {
+    background-color: hsl(var(--ocean-500));
+  }
+
+  .bg-ocean-700 {
+    background-color: hsl(var(--ocean-700));
+  }
+
+  .bg-comic-orange {
+    background-color: hsl(var(--comic-orange));
+  }
+
+  .bg-comic-yellow {
+    background-color: hsl(var(--comic-yellow));
+  }
+
+  .text-forest-50 {
+    color: hsl(var(--forest-50));
+  }
+
+  .text-forest-100 {
+    color: hsl(var(--forest-100));
+  }
+
+  .text-forest-300 {
+    color: hsl(var(--forest-300));
+  }
+
+  .text-forest-500 {
+    color: hsl(var(--forest-500));
+  }
+
+  .text-forest-600 {
+    color: hsl(140, 35%, 30%);
+  }
+
+  .text-forest-700 {
+    color: hsl(var(--forest-700));
+  }
+
+  .text-forest-900 {
+    color: hsl(var(--forest-900));
+  }
+
+  .text-ocean-500 {
+    color: hsl(var(--ocean-500));
+  }
+
+  .text-ocean-700 {
+    color: hsl(var(--ocean-700));
+  }
+
+  .text-comic-orange {
+    color: hsl(var(--comic-orange));
+  }
+
+  .text-comic-yellow {
+    color: hsl(var(--comic-yellow));
+  }
+
+  .border-forest-300 {
+    border-color: hsl(var(--forest-300));
+  }
+
+  .border-forest-500 {
+    border-color: hsl(var(--forest-500));
+  }
+
+  .focus\:border-forest-500:focus {
+    border-color: hsl(var(--forest-500));
+  }
+
+  .focus\:ring-forest-100:focus {
+    --tw-ring-color: hsl(var(--forest-100));
+  }
+
+  .hover\:bg-forest-100:hover {
+    background-color: hsl(var(--forest-100));
+  }
+
+  .hover\:bg-forest-700:hover {
+    background-color: hsl(var(--forest-700));
+  }
+
+  .hover\:text-comic-orange:hover {
+    color: hsl(var(--comic-orange));
+  }
+}
+
+@layer utilities {
+  .animate-bounce-soft {
+    animation: bounce 2s infinite;
+  }
+
+  .animate-glow {
+    animation: glow 2s ease-in-out infinite alternate;
+  }
+
+  .animate-slide-up {
+    animation: slideUp 0.5s ease-out;
+  }
+
+  @keyframes glow {
+    from { 
+      box-shadow: 0 0 20px rgba(74, 124, 89, 0.4); 
+    }
+    to { 
+      box-shadow: 0 0 30px rgba(74, 124, 89, 0.8), 0 0 40px rgba(74, 124, 89, 0.6); 
+    }
+  }
+
+  @keyframes slideUp {
+    from { 
+      transform: translateY(20px); 
+      opacity: 0; 
+    }
+    to { 
+      transform: translateY(0); 
+      opacity: 1; 
+    }
+  }
+}
