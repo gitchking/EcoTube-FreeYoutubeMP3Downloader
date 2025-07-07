@@ -27,11 +27,28 @@ export default function Footer() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
           >
-            <p className="text-forest-600 text-center w-full">&copy; 2024 EcoTube 🌿</p>
             <div className="flex space-x-4">
               <a href="/privacy" className="text-forest-700 hover:text-comic-orange transition-colors">Privacy Policy</a>
               <a href="/terms" className="text-forest-700 hover:text-comic-orange transition-colors">Terms of Service</a>
             </div>
+          </motion.div>
+          
+          <motion.div 
+            className="absolute left-1/2 transform -translate-x-1/2 text-sm font-nunito hidden md:block"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+          >
+            <p className="text-forest-600 text-center">&copy; 2024 EcoTube 🌿</p>
+          </motion.div>
+          
+          <motion.div 
+            className="block md:hidden text-center text-sm font-nunito mt-2 w-full"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+          >
+            <p className="text-forest-600">&copy; 2024 EcoTube 🌿</p>
           </motion.div>
         </div>
       </div>
