@@ -12,7 +12,7 @@ export default function Footer() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <div className="w-8 h-8 bg-forest-200 rounded-comic flex items-center justify-center border-2 border-forest-400 comic-shadow">
+            <div className="w-8 h-8 bg-forest-200 rounded-comic flex items-center justify-center border-2 border-forest-400 comic-shadow border-2 border-black">
               <Leaf className="text-forest-800 w-4 h-4" />
             </div>
             <div>

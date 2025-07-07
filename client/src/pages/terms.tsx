@@ -73,7 +73,7 @@ export default function Terms() {
           {sections.map((section, index) => (
             <motion.div
               key={index}
-              className="bg-white rounded-comic p-6 comic-shadow"
+              className="bg-white rounded-comic p-6 comic-shadow border-2 border-black"
               initial={{ opacity: 0, x: -30 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
@@ -101,14 +101,14 @@ export default function Terms() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.8 }}
         >
-          <div className="bg-blue-100 border-3 border-blue-300 rounded-comic p-6">
+          <div className="bg-blue-100 border-3 border-blue-300 rounded-comic p-6 border-2 border-black">
             <h3 className="text-lg font-bold text-blue-700 mb-2 font-comic">Contact Information</h3>
             <p className="text-blue-600 font-nunito">
               For questions about these terms, contact us at <a href="mailto:legal@ecotube.com" className="font-semibold hover:text-comic-orange transition-colors">legal@ecotube.com</a>
             </p>
           </div>
           
-          <div className="bg-green-100 border-3 border-green-300 rounded-comic p-6">
+          <div className="bg-green-100 border-3 border-green-300 rounded-comic p-6 border-2 border-black">
             <h3 className="text-lg font-bold text-green-700 mb-2 font-comic">Fair Use Reminder</h3>
             <p className="text-green-600 font-nunito">
               Please use EcoTube responsibly and respect content creators' rights. Our service is designed for personal, legal use only.
