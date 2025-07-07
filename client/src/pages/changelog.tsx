@@ -66,7 +66,7 @@ export default function Changelog() {
           {versions.map((version, index) => (
             <motion.div
               key={version.version}
-              className="bg-white rounded-comic p-6 comic-shadow"
+              className="bg-white rounded-comic p-6 comic-shadow border-2 border-black"
               initial={{ opacity: 0, x: -30 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}

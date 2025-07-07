@@ -31,7 +31,7 @@ export default function Navigation() {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              <div className="w-12 h-12 bg-forest-200 rounded-comic flex items-center justify-center comic-shadow border-2 border-forest-300">
+              <div className="w-12 h-12 bg-forest-200 rounded-comic flex items-center justify-center comic-shadow border-2 border-forest-300 border-2 border-black">
                 <Leaf className="text-forest-800 w-6 h-6" />
               </div>
               <div className="flex flex-col">

@@ -76,7 +76,7 @@ export default function FAQs() {
           {faqs.map((faq, index) => (
             <motion.div 
               key={index}
-              className="bg-forest-50 rounded-comic overflow-hidden comic-shadow"
+              className="bg-forest-50 rounded-comic overflow-hidden comic-shadow border-2 border-black"
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.4, delay: index * 0.1 }}
