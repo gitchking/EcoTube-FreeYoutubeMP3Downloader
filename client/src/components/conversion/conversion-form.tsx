@@ -143,7 +143,7 @@ export default function ConversionForm() {
         >
           <Button 
             type="submit"
-            className="w-full bg-green-600 hover:bg-green-700 dark:bg-blue-600 dark:hover:bg-blue-700 text-white font-bold py-6 px-8 rounded-comic comic-button-shadow transition-all duration-200 text-xl font-comic border-2 border-green-800 dark:border-blue-800"
+            className="w-full bg-green-600 hover:bg-green-700 dark:bg-blue-600 dark:hover:bg-blue-700 text-white font-bold py-6 px-8 rounded-comic black-button-shadow transition-all duration-200 text-xl font-comic border-2 border-green-800 dark:border-blue-800"
             disabled={convertMutation.isPending}
           >
             <>
