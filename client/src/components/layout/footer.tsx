@@ -17,7 +17,7 @@ export default function Footer() {
             </div>
             <div>
               <h3 className="text-xl font-bold font-comic text-forest-800">EcoTube</h3>
-              <p className="text-forest-600 font-nunito text-sm">Sustainable Converting</p>
+              <p className="text-forest-600 font-nunito text-sm">Premium Convertor</p>
             </div>
           </motion.div>
           
@@ -27,7 +27,7 @@ export default function Footer() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
           >
-            <p className="text-forest-600 text-center">&copy; 2024 EcoTube 🌳🌿🍃🌱</p>
+            <p className="text-forest-600 text-center">&copy; 2024 EcoTube 🌿</p>
             <div className="flex space-x-4">
               <a href="/privacy" className="text-forest-700 hover:text-comic-orange transition-colors">Privacy Policy</a>
               <a href="/terms" className="text-forest-700 hover:text-comic-orange transition-colors">Terms of Service</a>
