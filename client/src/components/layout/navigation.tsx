@@ -21,7 +21,7 @@ export default function Navigation() {
   };
 
   return (
-    <nav className="bg-white shadow-lg sticky top-0 z-50 border-b-4 border-forest-300">
+    <nav className="bg-white sticky top-0 z-50 border-b-4 border-forest-300">
       <div className="max-w-6xl mx-auto px-4">
         <div className="flex justify-between items-center py-4">
           {/* Logo */}
