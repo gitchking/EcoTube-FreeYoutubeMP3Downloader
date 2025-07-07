@@ -68,10 +68,10 @@ export default function Contact() {
 
   if (isSubmitted) {
     return (
-      <section className="py-12 bg-white">
+      <section className="py-12 bg-white dark:bg-gray-900">
         <div className="max-w-2xl mx-auto px-4">
           <motion.div 
-            className="bg-green-100 border-3 border-green-300 rounded-comic p-8 text-center border-2 border-black"
+            className="bg-green-100 dark:bg-green-900 border-3 border-green-300 dark:border-green-700 rounded-comic p-8 text-center border-2 border-black dark:border-white"
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5 }}
@@ -86,7 +86,7 @@ export default function Contact() {
             </motion.div>
             
             <motion.h2 
-              className="text-3xl font-bold text-green-700 mb-4 font-comic"
+              className="text-3xl font-bold text-green-700 dark:text-green-300 mb-4 font-comic"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.3 }}
@@ -95,7 +95,7 @@ export default function Contact() {
             </motion.h2>
             
             <motion.p 
-              className="text-green-600 font-nunito mb-6 text-lg"
+              className="text-green-600 dark:text-green-400 font-nunito mb-6 text-lg"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.4 }}
@@ -122,7 +122,7 @@ export default function Contact() {
   }
 
   return (
-    <section className="py-12 bg-white">
+    <section className="py-12 bg-white dark:bg-gray-900">
       <div className="max-w-2xl mx-auto px-4">
         <motion.div 
           className="text-center mb-12"
@@ -130,12 +130,12 @@ export default function Contact() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-4xl font-bold text-forest-700 mb-4 font-comic">Get in Touch</h2>
-          <p className="text-xl text-forest-600 font-nunito">Have questions or feedback? We'd love to hear from you!</p>
+          <h2 className="text-4xl font-bold text-forest-700 dark:text-gray-200 mb-4 font-comic">Get in Touch</h2>
+          <p className="text-xl text-forest-600 dark:text-gray-400 font-nunito">Have questions or feedback? We'd love to hear from you!</p>
         </motion.div>
 
         <motion.div 
-          className="bg-forest-50 rounded-comic p-8 comic-shadow border-2 border-black"
+          className="bg-forest-50 dark:bg-gray-800 rounded-comic p-8 comic-shadow border-2 border-black dark:border-white"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
@@ -147,7 +147,7 @@ export default function Contact() {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5, delay: 0.3 }}
             >
-              <Label className="flex items-center text-lg font-bold text-forest-700 mb-3 font-comic">
+              <Label className="flex items-center text-lg font-bold text-forest-700 dark:text-gray-200 mb-3 font-comic">
                 <span className="w-8 h-8 bg-orange-200 rounded-full flex items-center justify-center mr-3">
                   <User className="text-orange-800 w-4 h-4" />
                 </span>
@@ -169,7 +169,7 @@ export default function Contact() {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5, delay: 0.4 }}
             >
-              <Label className="flex items-center text-lg font-bold text-forest-700 mb-3 font-comic">
+              <Label className="flex items-center text-lg font-bold text-forest-700 dark:text-gray-200 mb-3 font-comic">
                 <span className="w-8 h-8 bg-blue-200 rounded-full flex items-center justify-center mr-3">
                   <Mail className="text-blue-800 w-4 h-4" />
                 </span>
@@ -191,7 +191,7 @@ export default function Contact() {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5, delay: 0.5 }}
             >
-              <Label className="flex items-center text-lg font-bold text-forest-700 mb-3 font-comic">
+              <Label className="flex items-center text-lg font-bold text-forest-700 dark:text-gray-200 mb-3 font-comic">
                 <span className="w-8 h-8 bg-green-200 rounded-full flex items-center justify-center mr-3">
                   <MessageCircle className="text-green-800 w-4 h-4" />
                 </span>

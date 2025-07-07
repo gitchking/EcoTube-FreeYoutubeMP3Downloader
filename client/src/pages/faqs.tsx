@@ -55,7 +55,7 @@ export default function FAQs() {
   };
 
   return (
-    <section className="py-12 bg-white">
+    <section className="py-12 bg-white dark:bg-gray-900">
       <div className="max-w-4xl mx-auto px-4">
         <motion.div 
           className="text-center mb-12"
@@ -63,8 +63,8 @@ export default function FAQs() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-4xl font-bold text-forest-700 mb-4 font-comic">Frequently Asked Questions</h2>
-          <p className="text-xl text-forest-600 font-nunito">Everything you need to know about EcoTube</p>
+          <h2 className="text-4xl font-bold text-forest-700 dark:text-gray-200 mb-4 font-comic">Frequently Asked Questions</h2>
+          <p className="text-xl text-forest-600 dark:text-gray-400 font-nunito">Everything you need to know about EcoTube</p>
         </motion.div>
 
         <motion.div 
@@ -76,13 +76,13 @@ export default function FAQs() {
           {faqs.map((faq, index) => (
             <motion.div 
               key={index}
-              className="bg-forest-50 rounded-comic overflow-hidden comic-shadow border-2 border-black"
+              className="bg-forest-50 dark:bg-gray-800 rounded-comic overflow-hidden comic-shadow border-2 border-black dark:border-white"
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.4, delay: index * 0.1 }}
             >
               <motion.button 
-                className="w-full px-6 py-4 text-left flex items-center justify-between hover:bg-forest-100 transition-colors"
+                className="w-full px-6 py-4 text-left flex items-center justify-between hover:bg-forest-100 dark:hover:bg-gray-700 transition-colors"
                 onClick={() => toggleFAQ(index)}
                 whileHover={{ scale: 1.01 }}
                 whileTap={{ scale: 0.99 }}
@@ -91,13 +91,13 @@ export default function FAQs() {
                   <div className={`w-8 h-8 ${faq.bgColor} rounded-full flex items-center justify-center mr-4`}>
                     <faq.icon className={`${faq.iconColor} w-4 h-4`} />
                   </div>
-                  <span className="font-bold text-forest-700 font-comic">{faq.question}</span>
+                  <span className="font-bold text-forest-700 dark:text-gray-200 font-comic">{faq.question}</span>
                 </div>
                 <motion.div
                   animate={{ rotate: openFAQ === index ? 180 : 0 }}
                   transition={{ duration: 0.2 }}
                 >
-                  <ChevronDown className="text-forest-500 w-5 h-5" />
+                  <ChevronDown className="text-forest-500 dark:text-gray-400 w-5 h-5" />
                 </motion.div>
               </motion.button>
               
@@ -111,7 +111,7 @@ export default function FAQs() {
                     className="overflow-hidden"
                   >
                     <div className="px-6 pb-6">
-                      <p className="text-forest-600 font-nunito pl-12">{faq.answer}</p>
+                      <p className="text-forest-600 dark:text-gray-400 font-nunito pl-12">{faq.answer}</p>
                     </div>
                   </motion.div>
                 )}
