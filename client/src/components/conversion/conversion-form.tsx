@@ -151,7 +151,7 @@ export default function ConversionForm() {
               <div className="w-8 h-8 bg-yellow-200 rounded-full flex items-center justify-center">
                 <Zap className="text-yellow-800 w-5 h-5" />
               </div>
-              <span className="font-bold">Convert to MP3</span>
+              <span className="font-bold">🌿 EcoConvert Now!</span>
             </div>
           </Button>
         </motion.div>
