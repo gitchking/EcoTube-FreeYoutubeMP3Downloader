@@ -67,7 +67,7 @@ export default function Home() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
           >
-            Fast, eco-friendly YouTube to MP3 conversion! 🌿⚡
+            Convert your favorite YouTube videos to high-quality MP3 files with our eco-friendly, lightning-fast converter! 🌿⚡
           </motion.p>
         </motion.div>
 

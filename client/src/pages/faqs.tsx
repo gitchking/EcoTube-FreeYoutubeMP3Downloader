@@ -10,8 +10,8 @@ export default function FAQs() {
       icon: Gavel,
       question: "Is it legal to convert YouTube videos to MP3?",
       answer: "Yes, for personal use and content you own or have permission to convert. Always respect copyright laws and YouTube's terms of service.",
-      bgColor: "bg-red-200",
-      iconColor: "text-red-800"
+      bgColor: "bg-forest-200",
+      iconColor: "text-forest-800"
     },
     {
       icon: Clock,

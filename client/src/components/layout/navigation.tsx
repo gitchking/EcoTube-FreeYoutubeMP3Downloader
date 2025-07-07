@@ -36,7 +36,7 @@ export default function Navigation() {
               </div>
               <div className="flex flex-col">
                 <h1 className="text-2xl font-bold text-forest-700 font-comic">EcoTube</h1>
-                <p className="text-xs text-forest-500 font-nunito">Premium Convertor</p>
+                <p className="text-xs text-forest-500 font-nunito">Clean • Green • Convert</p>
               </div>
             </motion.div>
           </Link>
@@ -48,8 +48,8 @@ export default function Navigation() {
                 <motion.div
                   className={`nav-link font-semibold transition-colors duration-200 px-3 py-2 rounded-lg ${
                     isActive(item.path)
-                      ? "text-forest-700 border-b-2 border-forest-500 bg-forest-50 comic-shadow"
-                      : "text-forest-700 hover:text-comic-orange hover:bg-forest-50 hover:comic-shadow"
+                      ? "text-forest-700 border-b-2 border-forest-500 bg-forest-50"
+                      : "text-forest-700 hover:text-comic-orange hover:bg-forest-50"
                   }`}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}

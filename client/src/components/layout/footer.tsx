@@ -5,7 +5,7 @@ export default function Footer() {
   return (
     <footer className="bg-forest-100 border-t-4 border-forest-300 py-4">
       <div className="max-w-6xl mx-auto px-4">
-        <div className="flex flex-col items-center justify-center text-center space-y-2">
+        <div className="flex flex-col md:flex-row justify-between items-center space-y-2 md:space-y-0">
           <motion.div 
             className="flex items-center space-x-3"
             initial={{ opacity: 0, y: 20 }}

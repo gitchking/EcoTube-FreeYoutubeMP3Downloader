@@ -7,8 +7,8 @@ export default function Changelog() {
       version: "2.1.0",
       date: "January 15, 2024",
       icon: Star,
-      bgColor: "bg-red-200",
-      iconColor: "text-red-800",
+      bgColor: "bg-forest-200",
+      iconColor: "text-forest-800",
       badge: "Latest",
       badgeColor: "bg-green-100 text-green-700",
       changes: [
