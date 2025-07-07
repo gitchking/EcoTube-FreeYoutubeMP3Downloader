@@ -82,7 +82,7 @@ export default function Contact() {
               animate={{ scale: 1, rotate: 360 }}
               transition={{ duration: 0.5, delay: 0.2 }}
             >
-              <Check className="text-white" size={32} />
+              <Check className="text-white w-8 h-8" />
             </motion.div>
             
             <motion.h2 
@@ -148,7 +148,7 @@ export default function Contact() {
               transition={{ duration: 0.5, delay: 0.3 }}
             >
               <Label className="block text-lg font-bold text-forest-700 mb-3 font-comic">
-                <User className="text-comic-orange mr-2 inline-block" size={20} />
+                <User className="text-comic-orange mr-2 inline-block w-5 h-5" />
                 Your Name
               </Label>
               <Input 
@@ -168,7 +168,7 @@ export default function Contact() {
               transition={{ duration: 0.5, delay: 0.4 }}
             >
               <Label className="block text-lg font-bold text-forest-700 mb-3 font-comic">
-                <Mail className="text-comic-orange mr-2 inline-block" size={20} />
+                <Mail className="text-comic-orange mr-2 inline-block w-5 h-5" />
                 Email Address
               </Label>
               <Input 
@@ -188,7 +188,7 @@ export default function Contact() {
               transition={{ duration: 0.5, delay: 0.5 }}
             >
               <Label className="block text-lg font-bold text-forest-700 mb-3 font-comic">
-                <MessageCircle className="text-comic-orange mr-2 inline-block" size={20} />
+                <MessageCircle className="text-comic-orange mr-2 inline-block w-5 h-5" />
                 Your Message
               </Label>
               <Textarea 
@@ -226,9 +226,9 @@ export default function Contact() {
                     </>
                   ) : (
                     <>
-                      <Send className="text-white mr-3" size={20} />
+                      <Send className="text-white mr-3 w-5 h-5" />
                       Send Message
-                      <Heart className="text-comic-orange ml-3" size={20} />
+                      <Heart className="text-comic-orange ml-3 w-5 h-5" />
                     </>
                   )}
                 </span>

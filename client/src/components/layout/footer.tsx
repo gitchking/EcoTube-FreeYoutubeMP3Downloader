@@ -13,7 +13,7 @@ export default function Footer() {
             transition={{ duration: 0.5 }}
           >
             <div className="w-10 h-10 bg-white rounded-comic flex items-center justify-center">
-              <Leaf className="text-forest-700" size={20} />
+              <Leaf className="text-forest-700 w-5 h-5" />
             </div>
             <div>
               <h3 className="text-xl font-bold font-comic">EcoTube</h3>

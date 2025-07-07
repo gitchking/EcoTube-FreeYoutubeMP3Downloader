@@ -98,7 +98,7 @@ export default function ConversionForm() {
         {/* URL Input */}
         <div>
           <Label className="block text-lg font-bold text-forest-700 mb-3 font-comic">
-            <Link className="text-comic-orange mr-2 inline-block" size={20} />
+            <Link className="text-comic-orange mr-2 inline-block w-5 h-5" />
             Paste YouTube URL
           </Label>
           <div className="relative">
@@ -116,7 +116,7 @@ export default function ConversionForm() {
         {/* Quality Selection */}
         <div>
           <Label className="block text-lg font-bold text-forest-700 mb-3 font-comic">
-            <Sliders className="text-comic-orange mr-2 inline-block" size={20} />
+            <Sliders className="text-comic-orange mr-2 inline-block w-5 h-5" />
             Audio Quality
           </Label>
           <Select value={quality} onValueChange={setQuality}>
@@ -144,9 +144,9 @@ export default function ConversionForm() {
             disabled={convertMutation.isPending}
           >
             <span className="flex items-center justify-center">
-              <Zap className="text-comic-yellow mr-3" size={24} />
+              <Zap className="text-comic-yellow mr-3 w-6 h-6" />
               POW! Convert Now
-              <Zap className="text-comic-yellow ml-3" size={24} />
+              <Zap className="text-comic-yellow ml-3 w-6 h-6" />
             </span>
           </Button>
         </motion.div>

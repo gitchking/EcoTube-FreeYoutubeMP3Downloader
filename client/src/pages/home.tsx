@@ -46,7 +46,7 @@ export default function Home() {
               ease: "easeInOut"
             }}
           >
-            <Music className="text-white" size={48} />
+            <Music className="text-white w-12 h-12" />
           </motion.div>
           
           <motion.h2 
@@ -97,7 +97,7 @@ export default function Home() {
               }}
             >
               <div className={`w-16 h-16 mx-auto mb-4 ${feature.color} rounded-full flex items-center justify-center`}>
-                <feature.icon className="text-white" size={24} />
+                <feature.icon className="text-white w-6 h-6" />
               </div>
               <h3 className="text-lg font-bold text-forest-700 mb-2 font-comic">{feature.title}</h3>
               <p className="text-forest-600 font-nunito">{feature.description}</p>

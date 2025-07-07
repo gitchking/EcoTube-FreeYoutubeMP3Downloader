@@ -32,7 +32,7 @@ export default function Navigation() {
               whileTap={{ scale: 0.95 }}
             >
               <div className="w-12 h-12 bg-forest-500 rounded-comic flex items-center justify-center comic-shadow">
-                <Leaf className="text-white" size={24} />
+                <Leaf className="text-white w-6 h-6" />
               </div>
               <div className="flex flex-col">
                 <h1 className="text-2xl font-bold text-forest-700 font-comic">EcoTube</h1>
@@ -66,9 +66,9 @@ export default function Navigation() {
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
             {isMobileMenuOpen ? (
-              <X className="text-white" size={20} />
+              <X className="text-white w-5 h-5" />
             ) : (
-              <Menu className="text-white" size={20} />
+              <Menu className="text-white w-5 h-5" />
             )}
           </button>
         </div>

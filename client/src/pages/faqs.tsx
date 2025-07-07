@@ -83,7 +83,7 @@ export default function FAQs() {
               >
                 <div className="flex items-center">
                   <div className={`w-8 h-8 ${faq.color} rounded-full flex items-center justify-center mr-4`}>
-                    <faq.icon className="text-white" size={16} />
+                    <faq.icon className="text-white w-4 h-4" />
                   </div>
                   <span className="font-bold text-forest-700 font-comic">{faq.question}</span>
                 </div>
@@ -91,7 +91,7 @@ export default function FAQs() {
                   animate={{ rotate: openFAQ === index ? 180 : 0 }}
                   transition={{ duration: 0.2 }}
                 >
-                  <ChevronDown className="text-forest-500" size={20} />
+                  <ChevronDown className="text-forest-500 w-5 h-5" />
                 </motion.div>
               </motion.button>
               

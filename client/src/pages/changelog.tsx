@@ -79,7 +79,7 @@ export default function Changelog() {
                     whileHover={{ rotate: 360 }}
                     transition={{ duration: 0.5 }}
                   >
-                    <version.icon className="text-white" size={24} />
+                    <version.icon className="text-white w-6 h-6" />
                   </motion.div>
                   <div>
                     <h3 className="text-xl font-bold text-forest-700 font-comic">Version {version.version}</h3>
@@ -112,7 +112,7 @@ export default function Changelog() {
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.3, delay: 0.4 + index * 0.1 + changeIndex * 0.05 }}
                   >
-                    <change.icon className={`${change.color} mr-2`} size={16} />
+                    <change.icon className={`${change.color} mr-2 w-4 h-4`} />
                     {change.text}
                   </motion.li>
                 ))}

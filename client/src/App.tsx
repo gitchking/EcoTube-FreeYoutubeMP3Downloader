@@ -13,15 +13,17 @@ import Footer from "@/components/layout/footer";
 
 function Router() {
   return (
-    <div className="min-h-screen bg-cream">
+    <div className="min-h-screen bg-cream flex flex-col">
       <Navigation />
-      <Switch>
-        <Route path="/" component={Home} />
-        <Route path="/faqs" component={FAQs} />
-        <Route path="/changelog" component={Changelog} />
-        <Route path="/contact" component={Contact} />
-        <Route component={NotFound} />
-      </Switch>
+      <main className="flex-1 min-h-0">
+        <Switch>
+          <Route path="/" component={Home} />
+          <Route path="/faqs" component={FAQs} />
+          <Route path="/changelog" component={Changelog} />
+          <Route path="/contact" component={Contact} />
+          <Route component={NotFound} />
+        </Switch>
+      </main>
       <Footer />
     </div>
   );

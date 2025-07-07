@@ -40,7 +40,7 @@ export default function ConversionResult({ result, onReset }: ConversionResultPr
         animate={{ scale: 1 }}
         transition={{ duration: 0.3, delay: 0.2 }}
       >
-        <Check className="text-white" size={24} />
+        <Check className="text-white w-6 h-6" />
       </motion.div>
       
       <motion.h3 
@@ -71,7 +71,7 @@ export default function ConversionResult({ result, onReset }: ConversionResultPr
           onClick={handleDownload}
           className="bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-comic comic-button-shadow font-comic"
         >
-          <Download className="mr-2" size={18} />
+          <Download className="mr-2 w-4 h-4" />
           Download MP3
         </Button>
         
@@ -80,7 +80,7 @@ export default function ConversionResult({ result, onReset }: ConversionResultPr
           variant="outline"
           className="border-2 border-forest-500 text-forest-700 hover:bg-forest-50 font-bold py-3 px-6 rounded-comic font-comic"
         >
-          <RotateCcw className="mr-2" size={18} />
+          <RotateCcw className="mr-2 w-4 h-4" />
           Convert Another
         </Button>
       </motion.div>
