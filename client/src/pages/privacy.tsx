@@ -48,7 +48,7 @@ export default function Privacy() {
   ];
 
   return (
-    <section className="py-12 bg-forest-50">
+    <section className="py-12 bg-forest-50 dark:bg-black">
       <div className="max-w-4xl mx-auto px-4">
         <motion.div 
           className="text-center mb-12"
@@ -59,9 +59,9 @@ export default function Privacy() {
           <div className="w-24 h-24 mx-auto mb-6 bg-gradient-to-br from-purple-200 to-pink-200 rounded-full flex items-center justify-center comic-shadow border-4 border-purple-400">
             <Shield className="text-purple-800 w-12 h-12" />
           </div>
-          <h2 className="text-4xl font-bold text-forest-700 mb-4 font-comic">Privacy Policy</h2>
-          <p className="text-xl text-forest-600 font-nunito">Your privacy is our priority. Here's how we protect your data.</p>
-          <p className="text-sm text-forest-500 font-nunito mt-2">Last updated: January 2024</p>
+          <h2 className="text-4xl font-bold text-forest-700 dark:text-white mb-4 font-comic">Privacy Policy</h2>
+          <p className="text-xl text-forest-600 dark:text-gray-300 font-nunito">Your privacy is our priority. Here's how we protect your data.</p>
+          <p className="text-sm text-forest-500 dark:text-gray-400 font-nunito mt-2">Last updated: January 2024</p>
         </motion.div>
 
         <motion.div 
@@ -73,7 +73,7 @@ export default function Privacy() {
           {sections.map((section, index) => (
             <motion.div
               key={index}
-              className="bg-white rounded-comic p-6 comic-shadow border-2 border-black"
+              className="bg-white dark:bg-black rounded-comic p-6 comic-shadow border-2 border-black dark:border-white"
               initial={{ opacity: 0, x: -30 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
@@ -87,8 +87,8 @@ export default function Privacy() {
                   <section.icon className={`${section.iconColor} w-6 h-6`} />
                 </div>
                 <div className="flex-1">
-                  <h3 className="text-xl font-bold text-forest-700 mb-3 font-comic">{section.title}</h3>
-                  <p className="text-forest-600 font-nunito leading-relaxed">{section.content}</p>
+                  <h3 className="text-xl font-bold text-forest-700 dark:text-white mb-3 font-comic">{section.title}</h3>
+                  <p className="text-forest-600 dark:text-gray-300 font-nunito leading-relaxed">{section.content}</p>
                 </div>
               </div>
             </motion.div>

@@ -38,7 +38,7 @@ export default function Home() {
           transition={{ duration: 0.6 }}
         >
           <motion.div 
-            className="w-16 h-16 mx-auto mb-6 bg-forest-200 dark:bg-gray-800 rounded-full flex items-center justify-center comic-shadow border-4 border-forest-300 dark:border-white"
+            className="w-16 h-16 mx-auto mb-6 bg-forest-200 dark:bg-black rounded-full flex items-center justify-center comic-shadow border-4 border-forest-300 dark:border-white"
             animate={{ 
               y: [0, -10, 0],
               rotate: [0, 5, -5, 0]
