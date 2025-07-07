@@ -22,7 +22,7 @@ export default function Footer() {
           </motion.div>
           
           <motion.div 
-            className="flex flex-col md:flex-row items-center space-y-1 md:space-y-0 md:space-x-6 text-sm font-nunito"
+            className="flex flex-col items-center space-y-2 text-sm font-nunito"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
