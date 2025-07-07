@@ -7,36 +7,39 @@ export default function Changelog() {
       version: "2.1.0",
       date: "January 15, 2024",
       icon: Star,
-      color: "bg-forest-500",
+      bgColor: "bg-forest-200",
+      iconColor: "text-forest-800",
       badge: "Latest",
       badgeColor: "bg-green-100 text-green-700",
       changes: [
-        { icon: Plus, text: "Added 320kbps premium quality option", color: "text-green-500" },
-        { icon: Zap, text: "40% faster conversion speeds", color: "text-comic-orange" },
-        { icon: Smartphone, text: "Improved mobile interface", color: "text-ocean-500" },
-        { icon: Leaf, text: "Reduced server energy consumption by 25%", color: "text-forest-500" }
+        { icon: Plus, text: "Added 320kbps premium quality option", bgColor: "bg-green-200", iconColor: "text-green-800" },
+        { icon: Zap, text: "40% faster conversion speeds", bgColor: "bg-orange-200", iconColor: "text-orange-800" },
+        { icon: Smartphone, text: "Improved mobile interface", bgColor: "bg-blue-200", iconColor: "text-blue-800" },
+        { icon: Leaf, text: "Reduced server energy consumption by 25%", bgColor: "bg-forest-200", iconColor: "text-forest-800" }
       ]
     },
     {
       version: "2.0.0",
       date: "December 1, 2023",
       icon: Rocket,
-      color: "bg-ocean-500",
+      bgColor: "bg-blue-200",
+      iconColor: "text-blue-800",
       changes: [
-        { icon: Palette, text: "Complete UI redesign with eco-comic theme", color: "text-comic-orange" },
-        { icon: Shield, text: "Enhanced security and privacy protection", color: "text-green-500" },
-        { icon: Cog, text: "Backend optimization for better performance", color: "text-forest-500" }
+        { icon: Palette, text: "Complete UI redesign with eco-comic theme", bgColor: "bg-orange-200", iconColor: "text-orange-800" },
+        { icon: Shield, text: "Enhanced security and privacy protection", bgColor: "bg-green-200", iconColor: "text-green-800" },
+        { icon: Cog, text: "Backend optimization for better performance", bgColor: "bg-forest-200", iconColor: "text-forest-800" }
       ]
     },
     {
       version: "1.5.2",
       date: "November 10, 2023",
       icon: Bug,
-      color: "bg-comic-orange",
+      bgColor: "bg-orange-200",
+      iconColor: "text-orange-800",
       changes: [
-        { icon: Wrench, text: "Fixed conversion errors for long videos", color: "text-forest-500" },
-        { icon: TrendingUp, text: "Improved conversion success rate to 99.8%", color: "text-ocean-500" },
-        { icon: Globe, text: "Added support for more YouTube URL formats", color: "text-green-500" }
+        { icon: Wrench, text: "Fixed conversion errors for long videos", bgColor: "bg-forest-200", iconColor: "text-forest-800" },
+        { icon: TrendingUp, text: "Improved conversion success rate to 99.8%", bgColor: "bg-blue-200", iconColor: "text-blue-800" },
+        { icon: Globe, text: "Added support for more YouTube URL formats", bgColor: "bg-green-200", iconColor: "text-green-800" }
       ]
     }
   ];
@@ -75,11 +78,11 @@ export default function Changelog() {
               <div className="flex items-center justify-between mb-4">
                 <div className="flex items-center">
                   <motion.div 
-                    className={`w-12 h-12 ${version.color} rounded-full flex items-center justify-center mr-4`}
+                    className={`w-12 h-12 ${version.bgColor} rounded-full flex items-center justify-center mr-4`}
                     whileHover={{ rotate: 360 }}
                     transition={{ duration: 0.5 }}
                   >
-                    <version.icon className="text-white w-6 h-6" />
+                    <version.icon className={`${version.iconColor} w-6 h-6`} />
                   </motion.div>
                   <div>
                     <h3 className="text-xl font-bold text-forest-700 font-comic">Version {version.version}</h3>
@@ -112,7 +115,9 @@ export default function Changelog() {
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.3, delay: 0.4 + index * 0.1 + changeIndex * 0.05 }}
                   >
-                    <change.icon className={`${change.color} mr-2 w-4 h-4`} />
+                    <span className={`w-6 h-6 ${change.bgColor} rounded-full flex items-center justify-center mr-2`}>
+                      <change.icon className={`${change.iconColor} w-3 h-3`} />
+                    </span>
                     {change.text}
                   </motion.li>
                 ))}

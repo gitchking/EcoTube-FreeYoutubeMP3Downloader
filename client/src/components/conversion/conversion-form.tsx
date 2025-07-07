@@ -109,7 +109,7 @@ export default function ConversionForm() {
               placeholder="https://www.youtube.com/watch?v=..." 
               value={url}
               onChange={(e) => setUrl(e.target.value)}
-              className="w-full px-4 py-4 border-3 border-forest-300 rounded-comic focus:border-forest-500 focus:outline-none focus:ring-4 focus:ring-forest-100 font-nunito text-lg transition-all duration-200"
+              className="w-full px-4 py-4 border-3 border-forest-300 rounded-comic focus:border-forest-500 focus:outline-none focus:ring-4 focus:ring-forest-100 font-nunito text-lg transition-all duration-200 h-16"
               required
             />
           </div>
@@ -124,7 +124,7 @@ export default function ConversionForm() {
             Audio Quality
           </Label>
           <Select value={quality} onValueChange={setQuality}>
-            <SelectTrigger className="w-full px-4 py-4 border-3 border-forest-300 rounded-comic focus:border-forest-500 focus:outline-none focus:ring-4 focus:ring-forest-100 font-nunito text-lg bg-white">
+            <SelectTrigger className="w-full px-4 py-4 border-3 border-forest-300 rounded-comic focus:border-forest-500 focus:outline-none focus:ring-4 focus:ring-forest-100 font-nunito text-lg bg-white h-16">
               <SelectValue />
             </SelectTrigger>
             <SelectContent>
@@ -148,9 +148,13 @@ export default function ConversionForm() {
             disabled={convertMutation.isPending}
           >
             <span className="flex items-center justify-center">
-              <Zap className="text-comic-yellow mr-3 w-6 h-6" />
+              <span className="w-8 h-8 bg-yellow-200 rounded-full flex items-center justify-center mr-3">
+                <Zap className="text-yellow-800 w-4 h-4" />
+              </span>
               POW! Convert Now
-              <Zap className="text-comic-yellow ml-3 w-6 h-6" />
+              <span className="w-8 h-8 bg-yellow-200 rounded-full flex items-center justify-center ml-3">
+                <Zap className="text-yellow-800 w-4 h-4" />
+              </span>
             </span>
           </Button>
         </motion.div>
