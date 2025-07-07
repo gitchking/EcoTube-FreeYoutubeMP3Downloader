@@ -5,9 +5,9 @@ export default function Footer() {
   return (
     <footer className="bg-forest-100 border-t-4 border-forest-300 py-4 border-2 border-black">
       <div className="max-w-6xl mx-auto px-4">
-        <div className="flex flex-col md:flex-row justify-between items-center space-y-2 md:space-y-0 relative">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 items-center">
           <motion.div 
-            className="flex items-center space-x-3"
+            className="flex items-center justify-center md:justify-start space-x-3"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
@@ -22,7 +22,7 @@ export default function Footer() {
           </motion.div>
           
           <motion.div 
-            className="absolute left-1/2 transform -translate-x-1/2 text-sm font-nunito hidden md:block"
+            className="text-center text-sm font-nunito"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
@@ -31,7 +31,7 @@ export default function Footer() {
           </motion.div>
           
           <motion.div 
-            className="flex flex-col items-center space-y-2 text-sm font-nunito"
+            className="flex flex-col items-center md:items-end space-y-2 text-sm font-nunito"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
@@ -39,9 +39,6 @@ export default function Footer() {
             <div className="flex space-x-4">
               <a href="/privacy" className="text-forest-700 hover:text-comic-orange transition-colors">Privacy Policy</a>
               <a href="/terms" className="text-forest-700 hover:text-comic-orange transition-colors">Terms of Service</a>
-            </div>
-            <div className="block md:hidden">
-              <p className="text-forest-600">&copy; 2024 EcoTube 🌿</p>
             </div>
           </motion.div>
         </div>
