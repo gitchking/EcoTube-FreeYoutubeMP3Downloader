@@ -3,44 +3,38 @@ import { Leaf } from "lucide-react";
 
 export default function Footer() {
   return (
-    <footer className="bg-forest-100 border-t-4 border-forest-300 py-8">
+    <footer className="bg-forest-100 border-t-4 border-forest-300 py-4">
       <div className="max-w-6xl mx-auto px-4">
-        <div className="flex flex-col md:flex-row justify-between items-center">
+        <div className="flex flex-col md:flex-row justify-between items-center space-y-2 md:space-y-0">
           <motion.div 
-            className="flex items-center space-x-3 mb-4 md:mb-0"
+            className="flex items-center space-x-3"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <div className="w-10 h-10 bg-forest-200 rounded-comic flex items-center justify-center border-2 border-forest-400 comic-shadow">
-              <Leaf className="text-forest-800 w-5 h-5" />
+            <div className="w-8 h-8 bg-forest-200 rounded-comic flex items-center justify-center border-2 border-forest-400 comic-shadow">
+              <Leaf className="text-forest-800 w-4 h-4" />
             </div>
             <div>
-              <h3 className="text-xl font-bold font-comic text-forest-800">EcoTube</h3>
-              <p className="text-forest-600 font-nunito text-sm">Sustainable Converting</p>
+              <h3 className="text-lg font-bold font-comic text-forest-800">EcoTube</h3>
+              <p className="text-forest-600 font-nunito text-xs">Sustainable Converting</p>
             </div>
           </motion.div>
           
           <motion.div 
-            className="flex space-x-6 text-sm font-nunito"
+            className="flex flex-col md:flex-row items-center space-y-1 md:space-y-0 md:space-x-6 text-xs font-nunito"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
           >
-            <a href="#" className="text-forest-700 hover:text-comic-orange transition-colors">Privacy Policy</a>
-            <a href="#" className="text-forest-700 hover:text-comic-orange transition-colors">Terms of Service</a>
-            <a href="#" className="text-forest-700 hover:text-comic-orange transition-colors">Carbon Neutral</a>
+            <div className="flex space-x-4">
+              <a href="/privacy" className="text-forest-700 hover:text-comic-orange transition-colors">Privacy Policy</a>
+              <a href="/terms" className="text-forest-700 hover:text-comic-orange transition-colors">Terms of Service</a>
+              <a href="#" className="text-forest-700 hover:text-comic-orange transition-colors">Carbon Neutral</a>
+            </div>
+            <p className="text-forest-600">&copy; 2024 EcoTube. Powered by renewable energy 🌱</p>
           </motion.div>
         </div>
-        
-        <motion.div 
-          className="border-t border-forest-300 mt-6 pt-6 text-center"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-        >
-          <p className="text-forest-600 font-nunito">&copy; 2024 EcoTube. Powered by renewable energy 🌱</p>
-        </motion.div>
       </div>
     </footer>
   );
