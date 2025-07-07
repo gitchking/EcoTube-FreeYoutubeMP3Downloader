@@ -149,12 +149,9 @@ export default function ConversionForm() {
           >
             <span className="flex items-center justify-center">
               <span className="w-8 h-8 bg-yellow-200 rounded-full flex items-center justify-center mr-3">
-                <Zap className="text-yellow-800 w-4 h-4" />
+                <Zap className="text-yellow-800 w-5 h-5" />
               </span>
-              POW! Convert Now
-              <span className="w-8 h-8 bg-yellow-200 rounded-full flex items-center justify-center ml-3">
-                <Zap className="text-yellow-800 w-4 h-4" />
-              </span>
+              Convert Now
             </span>
           </Button>
         </motion.div>
