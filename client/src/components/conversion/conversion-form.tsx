@@ -20,7 +20,7 @@ export default function ConversionForm() {
   const convertMutation = useMutation({
     mutationFn: async (data: { url: string; quality: string }) => {
       const response = await apiRequest("POST", "/api/convert", data);
-      
+
       if (response.headers.get('content-type')?.includes('audio')) {
         // If the response is audio file, create a download URL
         const blob = await response.blob();
