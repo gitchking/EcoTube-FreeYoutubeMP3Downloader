@@ -36,7 +36,7 @@ export default function Navigation() {
               </div>
               <div className="flex flex-col">
                 <h1 className="text-2xl font-bold text-forest-700 font-comic">EcoTube</h1>
-                <p className="text-xs text-forest-500 font-nunito">Clean • Green • Convert</p>
+                <p className="text-xs text-forest-500 font-nunito">Premium Convertor</p>
               </div>
             </motion.div>
           </Link>
