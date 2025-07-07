@@ -27,7 +27,7 @@ export default function Changelog() {
       changes: [
         { icon: Palette, text: "Complete UI redesign with eco-comic theme", bgColor: "bg-orange-200", iconColor: "text-orange-800" },
         { icon: Shield, text: "Enhanced security and privacy protection", bgColor: "bg-green-200", iconColor: "text-green-800" },
-        { icon: Cog, text: "Backend optimization for better performance", bgColor: "bg-forest-200", iconColor: "text-forest-800" }
+        { icon: Cog, text: "Backend optimization for better performance", bgColor: "bg-purple-200", iconColor: "text-purple-800" }
       ]
     },
     {
@@ -37,7 +37,7 @@ export default function Changelog() {
       bgColor: "bg-orange-200",
       iconColor: "text-orange-800",
       changes: [
-        { icon: Wrench, text: "Fixed conversion errors for long videos", bgColor: "bg-forest-200", iconColor: "text-forest-800" },
+        { icon: Wrench, text: "Fixed conversion errors for long videos", bgColor: "bg-pink-200", iconColor: "text-pink-800" },
         { icon: TrendingUp, text: "Improved conversion success rate to 99.8%", bgColor: "bg-blue-200", iconColor: "text-blue-800" },
         { icon: Globe, text: "Added support for more YouTube URL formats", bgColor: "bg-green-200", iconColor: "text-green-800" }
       ]

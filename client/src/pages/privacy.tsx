@@ -56,8 +56,8 @@ export default function Privacy() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <div className="w-24 h-24 mx-auto mb-6 bg-forest-200 rounded-full flex items-center justify-center comic-shadow border-4 border-forest-400">
-            <Shield className="text-forest-800 w-12 h-12" />
+          <div className="w-24 h-24 mx-auto mb-6 bg-gradient-to-br from-purple-200 to-pink-200 rounded-full flex items-center justify-center comic-shadow border-4 border-purple-400">
+            <Shield className="text-purple-800 w-12 h-12" />
           </div>
           <h2 className="text-4xl font-bold text-forest-700 mb-4 font-comic">Privacy Policy</h2>
           <p className="text-xl text-forest-600 font-nunito">Your privacy is our priority. Here's how we protect your data.</p>
