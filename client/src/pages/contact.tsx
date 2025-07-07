@@ -77,12 +77,12 @@ export default function Contact() {
             transition={{ duration: 0.5 }}
           >
             <motion.div 
-              className="w-20 h-20 mx-auto mb-6 bg-green-500 rounded-full flex items-center justify-center comic-shadow"
+              className="w-20 h-20 mx-auto mb-6 bg-gradient-to-br from-green-100 to-green-200 rounded-full flex items-center justify-center comic-shadow border-4 border-green-400"
               initial={{ scale: 0 }}
               animate={{ scale: 1, rotate: 360 }}
               transition={{ duration: 0.5, delay: 0.2 }}
             >
-              <Check className="text-white w-8 h-8" />
+              <Check className="text-green-600 w-10 h-10" />
             </motion.div>
             
             <motion.h2 
@@ -147,8 +147,10 @@ export default function Contact() {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5, delay: 0.3 }}
             >
-              <Label className="block text-lg font-bold text-forest-700 mb-3 font-comic">
-                <User className="text-comic-orange mr-2 inline-block w-5 h-5" />
+              <Label className="flex items-center text-lg font-bold text-forest-700 mb-3 font-comic">
+                <span className="w-8 h-8 bg-orange-100 rounded-full flex items-center justify-center mr-3">
+                  <User className="text-comic-orange w-4 h-4" />
+                </span>
                 Your Name
               </Label>
               <Input 
@@ -167,8 +169,10 @@ export default function Contact() {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5, delay: 0.4 }}
             >
-              <Label className="block text-lg font-bold text-forest-700 mb-3 font-comic">
-                <Mail className="text-comic-orange mr-2 inline-block w-5 h-5" />
+              <Label className="flex items-center text-lg font-bold text-forest-700 mb-3 font-comic">
+                <span className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center mr-3">
+                  <Mail className="text-ocean-500 w-4 h-4" />
+                </span>
                 Email Address
               </Label>
               <Input 
@@ -187,8 +191,10 @@ export default function Contact() {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5, delay: 0.5 }}
             >
-              <Label className="block text-lg font-bold text-forest-700 mb-3 font-comic">
-                <MessageCircle className="text-comic-orange mr-2 inline-block w-5 h-5" />
+              <Label className="flex items-center text-lg font-bold text-forest-700 mb-3 font-comic">
+                <span className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center mr-3">
+                  <MessageCircle className="text-forest-500 w-4 h-4" />
+                </span>
                 Your Message
               </Label>
               <Textarea 

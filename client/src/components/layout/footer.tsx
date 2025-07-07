@@ -12,8 +12,8 @@ export default function Footer() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <div className="w-10 h-10 bg-white rounded-comic flex items-center justify-center">
-              <Leaf className="text-forest-700 w-5 h-5" />
+            <div className="w-10 h-10 bg-gradient-to-br from-forest-100 to-forest-200 rounded-comic flex items-center justify-center border-2 border-forest-300">
+              <Leaf className="text-forest-600 w-5 h-5" />
             </div>
             <div>
               <h3 className="text-xl font-bold font-comic">EcoTube</h3>

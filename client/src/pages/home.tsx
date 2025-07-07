@@ -8,19 +8,22 @@ export default function Home() {
       icon: Rocket,
       title: "Lightning Fast",
       description: "Convert videos in seconds with our optimized processing",
-      color: "bg-ocean-500"
+      iconColor: "text-ocean-500",
+      bgColor: "bg-ocean-100"
     },
     {
       icon: Shield,
       title: "100% Secure",
       description: "Your data is never stored. Convert and download instantly",
-      color: "bg-green-500"
+      iconColor: "text-green-600",
+      bgColor: "bg-green-100"
     },
     {
       icon: Leaf,
       title: "Eco-Friendly",
       description: "Powered by green energy and optimized for efficiency",
-      color: "bg-comic-orange"
+      iconColor: "text-comic-orange",
+      bgColor: "bg-orange-100"
     }
   ];
 
@@ -35,7 +38,7 @@ export default function Home() {
           transition={{ duration: 0.6 }}
         >
           <motion.div 
-            className="w-32 h-32 mx-auto mb-6 bg-forest-500 rounded-full flex items-center justify-center comic-shadow"
+            className="w-32 h-32 mx-auto mb-6 bg-gradient-to-br from-forest-100 to-forest-300 rounded-full flex items-center justify-center comic-shadow border-4 border-forest-500"
             animate={{ 
               y: [0, -10, 0],
               rotate: [0, 5, -5, 0]
@@ -46,7 +49,7 @@ export default function Home() {
               ease: "easeInOut"
             }}
           >
-            <Music className="text-white w-12 h-12" />
+            <Music className="text-forest-700 w-16 h-16" />
           </motion.div>
           
           <motion.h2 
@@ -96,8 +99,8 @@ export default function Home() {
                 boxShadow: "12px 12px 0px rgba(74, 124, 89, 0.4)"
               }}
             >
-              <div className={`w-16 h-16 mx-auto mb-4 ${feature.color} rounded-full flex items-center justify-center`}>
-                <feature.icon className="text-white w-6 h-6" />
+              <div className={`w-16 h-16 mx-auto mb-4 ${feature.bgColor} rounded-full flex items-center justify-center comic-shadow`}>
+                <feature.icon className={`${feature.iconColor} w-8 h-8`} />
               </div>
               <h3 className="text-lg font-bold text-forest-700 mb-2 font-comic">{feature.title}</h3>
               <p className="text-forest-600 font-nunito">{feature.description}</p>

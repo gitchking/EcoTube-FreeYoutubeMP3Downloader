@@ -31,8 +31,8 @@ export default function Navigation() {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              <div className="w-12 h-12 bg-forest-500 rounded-comic flex items-center justify-center comic-shadow">
-                <Leaf className="text-white w-6 h-6" />
+              <div className="w-12 h-12 bg-gradient-to-br from-forest-400 to-forest-600 rounded-comic flex items-center justify-center comic-shadow border-2 border-forest-300">
+                <Leaf className="text-forest-100 w-6 h-6" />
               </div>
               <div className="flex flex-col">
                 <h1 className="text-2xl font-bold text-forest-700 font-comic">EcoTube</h1>

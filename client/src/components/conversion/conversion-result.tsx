@@ -35,12 +35,12 @@ export default function ConversionResult({ result, onReset }: ConversionResultPr
       transition={{ duration: 0.5 }}
     >
       <motion.div 
-        className="w-16 h-16 mx-auto mb-4 bg-green-500 rounded-full flex items-center justify-center comic-shadow"
+        className="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-green-100 to-green-200 rounded-full flex items-center justify-center comic-shadow border-4 border-green-400"
         initial={{ scale: 0 }}
         animate={{ scale: 1 }}
         transition={{ duration: 0.3, delay: 0.2 }}
       >
-        <Check className="text-white w-6 h-6" />
+        <Check className="text-green-600 w-6 h-6" />
       </motion.div>
       
       <motion.h3 
