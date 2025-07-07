@@ -5,7 +5,7 @@ export default function Footer() {
   return (
     <footer className="bg-forest-100 border-t-4 border-forest-300 py-4 border-2 border-black">
       <div className="max-w-6xl mx-auto px-4">
-        <div className="flex flex-col md:flex-row justify-between items-center space-y-2 md:space-y-0 relative">
+        <div className="flex flex-col md:flex-row justify-between items-center space-y-2 md:space-y-0">
           <motion.div 
             className="flex items-center space-x-3"
             initial={{ opacity: 0, y: 20 }}
@@ -22,7 +22,7 @@ export default function Footer() {
           </motion.div>
           
           <motion.div 
-            className="flex flex-col items-center space-y-2 text-sm font-nunito md:absolute md:left-1/2 md:transform md:-translate-x-1/2"
+            className="flex flex-col items-center space-y-2 text-sm font-nunito"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
