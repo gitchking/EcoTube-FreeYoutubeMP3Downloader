@@ -232,9 +232,13 @@ export default function Contact() {
                     </>
                   ) : (
                     <>
-                      <Send className="text-white mr-3 w-5 h-5" />
+                      <span className="w-8 h-8 bg-blue-200 rounded-full flex items-center justify-center mr-3">
+                        <Send className="text-blue-800 w-4 h-4" />
+                      </span>
                       Send Message
-                      <Heart className="text-comic-orange ml-3 w-5 h-5" />
+                      <span className="w-8 h-8 bg-pink-200 rounded-full flex items-center justify-center ml-3">
+                        <Heart className="text-pink-800 w-4 h-4" />
+                      </span>
                     </>
                   )}
                 </span>
