@@ -147,12 +147,12 @@ export default function ConversionForm() {
             className="w-full bg-forest-500 hover:bg-forest-700 text-white font-bold py-6 px-8 rounded-comic comic-button-shadow transition-all duration-200 text-xl font-comic"
             disabled={convertMutation.isPending}
           >
-            <span className="flex items-center justify-center">
-              <span className="w-8 h-8 bg-yellow-200 rounded-full flex items-center justify-center mr-3">
+            <div className="flex items-center justify-center gap-3">
+              <div className="w-8 h-8 bg-yellow-200 rounded-full flex items-center justify-center">
                 <Zap className="text-yellow-800 w-5 h-5" />
-              </span>
-              Convert Now
-            </span>
+              </div>
+              <span className="font-bold">Convert to MP3</span>
+            </div>
           </Button>
         </motion.div>
       </form>
