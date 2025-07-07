@@ -37,7 +37,7 @@ export default function ConversionResult({ result, onReset }: ConversionResultPr
   if (!result.success) {
     return (
       <motion.div 
-        className="bg-red-50 border-3 border-red-300 rounded-comic p-6 text-center max-w-2xl mx-auto border-2 border-black"
+        className="bg-red-50 dark:bg-red-900 border-3 border-red-300 dark:border-red-700 rounded-comic p-6 text-center max-w-2xl mx-auto border-2 border-black dark:border-white"
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.5 }}
@@ -61,7 +61,7 @@ export default function ConversionResult({ result, onReset }: ConversionResultPr
         
         <motion.h3 
           className={`text-xl font-bold mb-4 font-comic ${
-            isYouTubeBlocking ? 'text-orange-700' : 'text-red-700'
+            isYouTubeBlocking ? 'text-orange-700 dark:text-orange-300' : 'text-red-700 dark:text-red-300'
           }`}
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
@@ -123,22 +123,22 @@ export default function ConversionResult({ result, onReset }: ConversionResultPr
   // Success State
   return (
     <motion.div 
-      className="bg-green-100 border-3 border-green-300 rounded-comic p-6 text-center max-w-2xl mx-auto border-2 border-black"
+      className="bg-green-100 dark:bg-green-900 border-3 border-green-300 dark:border-green-700 rounded-comic p-6 text-center max-w-2xl mx-auto border-2 border-black dark:border-white"
       initial={{ opacity: 0, scale: 0.9 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.5 }}
     >
       <motion.div 
-        className="w-16 h-16 mx-auto mb-4 bg-green-200 rounded-full flex items-center justify-center comic-shadow border-4 border-green-400"
+        className="w-16 h-16 mx-auto mb-4 bg-green-200 dark:bg-green-700 rounded-full flex items-center justify-center comic-shadow border-4 border-green-400 dark:border-green-500"
         initial={{ scale: 0 }}
         animate={{ scale: 1 }}
         transition={{ duration: 0.3, delay: 0.2 }}
       >
-        <Check className="text-green-800 w-6 h-6" />
+        <Check className="text-green-800 dark:text-green-200 w-6 h-6" />
       </motion.div>
       
       <motion.h3 
-        className="text-xl font-bold text-green-700 mb-2 font-comic"
+        className="text-xl font-bold text-green-700 dark:text-green-300 mb-2 font-comic"
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.3, delay: 0.3 }}
@@ -147,7 +147,7 @@ export default function ConversionResult({ result, onReset }: ConversionResultPr
       </motion.h3>
       
       <motion.p 
-        className="text-green-600 font-nunito mb-4"
+        className="text-green-600 dark:text-green-400 font-nunito mb-4"
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.3, delay: 0.4 }}
