@@ -25,10 +25,19 @@ export default function ConversionForm() {
         // If the response is audio file, create a download URL
         const blob = await response.blob();
         const downloadUrl = URL.createObjectURL(blob);
+        // Extract title from content-disposition header if available
+        const contentDisposition = response.headers.get('content-disposition');
+        let title = `YouTube Audio - ${data.quality}`;
+        if (contentDisposition) {
+          const titleMatch = contentDisposition.match(/filename="(.+)"/);
+          if (titleMatch) {
+            title = titleMatch[1].replace('.mp3', '');
+          }
+        }
         return { 
           success: true, 
           downloadUrl,
-          title: `YouTube Audio - ${quality}` 
+          title 
         };
       } else {
         return await response.json();
