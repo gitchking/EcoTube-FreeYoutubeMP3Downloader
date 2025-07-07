@@ -32,7 +32,7 @@ export default function Navigation() {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              <div className="w-12 h-12 bg-forest-200 dark:bg-gray-800 rounded-full flex items-center justify-center comic-shadow border-2 border-forest-300 dark:border-white border-2 border-black dark:border-white">
+              <div className="w-12 h-12 bg-forest-200 dark:bg-black rounded-full flex items-center justify-center comic-shadow border-2 border-forest-300 dark:border-white border-2 border-black dark:border-white">
                 <Leaf className="text-forest-800 dark:text-white w-6 h-6" />
               </div>
               <div className="flex flex-col">
@@ -66,7 +66,7 @@ export default function Navigation() {
           <div className="md:hidden flex items-center space-x-2">
             <ThemeSwitch />
             <button 
-              className="w-10 h-10 bg-forest-500 dark:bg-gray-800 rounded-lg flex items-center justify-center border-2 border-black dark:border-white"
+              className="w-10 h-10 bg-forest-500 dark:bg-black rounded-lg flex items-center justify-center border-2 border-black dark:border-white"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             >
               {isMobileMenuOpen ? (
