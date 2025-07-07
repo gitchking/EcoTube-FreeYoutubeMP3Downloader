@@ -71,7 +71,7 @@ export default function Contact() {
       <section className="py-12 bg-white">
         <div className="max-w-2xl mx-auto px-4">
           <motion.div 
-            className="bg-green-100 border-3 border-green-300 rounded-comic p-8 text-center"
+            className="bg-green-100 border-3 border-green-300 rounded-comic p-8 text-center border-2 border-black"
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5 }}
@@ -135,7 +135,7 @@ export default function Contact() {
         </motion.div>
 
         <motion.div 
-          className="bg-forest-50 rounded-comic p-8 comic-shadow"
+          className="bg-forest-50 rounded-comic p-8 comic-shadow border-2 border-black"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
