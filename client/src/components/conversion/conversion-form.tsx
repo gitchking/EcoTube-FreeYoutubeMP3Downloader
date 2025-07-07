@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { useMutation } from "@tanstack/react-query";
-import { Link, Zap, Sliders } from "lucide-react";
+import { Link, Zap, Sliders, Music } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
@@ -144,15 +144,13 @@ export default function ConversionForm() {
         >
           <Button 
             type="submit"
-            className="w-full bg-forest-500 hover:bg-forest-700 text-white font-bold py-6 px-8 rounded-comic comic-button-shadow transition-all duration-200 text-xl font-comic"
+            className="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-6 px-8 rounded-comic comic-button-shadow transition-all duration-200 text-xl font-comic border-2 border-green-800"
             disabled={convertMutation.isPending}
           >
-            <span className="flex items-center justify-center">
-              <span className="w-8 h-8 bg-yellow-200 rounded-full flex items-center justify-center mr-3">
-                <Zap className="text-yellow-800 w-5 h-5" />
-              </span>
-              Convert Now
-            </span>
+            <>
+              <Music className="text-white w-5 h-5" />
+              <span className="font-bold text-white">Convert</span>
+            </>
           </Button>
         </motion.div>
       </form>
