@@ -134,3 +134,9 @@ Changelog:
   * Created theme provider with localStorage persistence
   * Enhanced mobile navigation with consistent dark mode styling
   * Preserved all comic shadow effects and design elements
+- July 07, 2025. Fixed dark mode shadow colors across all components:
+  * Updated all comic-shadow classes to use white shadows in dark mode
+  * Fixed comic-button-shadow hover and active states for dark theme
+  * Enhanced changelog hover effects with proper shadow colors
+  * Added dark mode support for glow animations with white shadows
+  * Maintained forest green shadows in light mode for comic aesthetic

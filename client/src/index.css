@@ -91,9 +91,17 @@
     box-shadow: 8px 8px 0px rgba(74, 124, 89, 0.3);
   }
 
+  .dark .comic-shadow {
+    box-shadow: 8px 8px 0px rgba(255, 255, 255, 0.3);
+  }
+
   .comic-button-shadow {
     box-shadow: 4px 4px 0px rgba(74, 124, 89, 0.4);
     transition: all 0.2s ease;
+  }
+
+  .dark .comic-button-shadow {
+    box-shadow: 4px 4px 0px rgba(255, 255, 255, 0.4);
   }
 
   .comic-button-shadow:hover {
@@ -101,9 +109,17 @@
     box-shadow: 6px 6px 0px rgba(74, 124, 89, 0.4);
   }
 
+  .dark .comic-button-shadow:hover {
+    box-shadow: 6px 6px 0px rgba(255, 255, 255, 0.4);
+  }
+
   .comic-button-shadow:active {
     transform: translate(2px, 2px);
     box-shadow: 2px 2px 0px rgba(74, 124, 89, 0.4);
+  }
+
+  .dark .comic-button-shadow:active {
+    box-shadow: 2px 2px 0px rgba(255, 255, 255, 0.4);
   }
 
   .rounded-comic {
@@ -249,6 +265,10 @@
   .comic-shadow-hover {
     box-shadow: 8px 8px 0px rgba(74, 124, 89, 0.4);
   }
+
+  .dark .comic-shadow-hover {
+    box-shadow: 8px 8px 0px rgba(255, 255, 255, 0.4);
+  }
 }
 
 @layer utilities {
@@ -270,6 +290,19 @@
     }
     to { 
       box-shadow: 0 0 30px rgba(74, 124, 89, 0.8), 0 0 40px rgba(74, 124, 89, 0.6); 
+    }
+  }
+
+  .dark .animate-glow {
+    animation: glow-dark 2s ease-in-out infinite alternate;
+  }
+
+  @keyframes glow-dark {
+    from { 
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.4); 
+    }
+    to { 
+      box-shadow: 0 0 30px rgba(255, 255, 255, 0.8), 0 0 40px rgba(255, 255, 255, 0.6); 
     }
   }
 
