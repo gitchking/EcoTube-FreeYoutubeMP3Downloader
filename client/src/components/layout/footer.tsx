@@ -5,9 +5,9 @@ export default function Footer() {
   return (
     <footer className="bg-forest-100 border-t-4 border-forest-300 py-4 border-2 border-black">
       <div className="max-w-6xl mx-auto px-4">
-        <div className="flex flex-col space-y-4">
+        <div className="flex flex-col md:flex-row justify-between items-center space-y-2 md:space-y-0">
           <motion.div 
-            className="flex items-center justify-center space-x-3"
+            className="flex items-center space-x-3"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
@@ -27,7 +27,7 @@ export default function Footer() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
           >
-            <p className="text-forest-600 text-center">&copy; 2024 EcoTube 🌿</p>
+            <p className="text-forest-600 text-center w-full">&copy; 2024 EcoTube 🌿</p>
             <div className="flex space-x-4">
               <a href="/privacy" className="text-forest-700 hover:text-comic-orange transition-colors">Privacy Policy</a>
               <a href="/terms" className="text-forest-700 hover:text-comic-orange transition-colors">Terms of Service</a>
