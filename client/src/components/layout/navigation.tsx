@@ -48,8 +48,8 @@ export default function Navigation() {
                 <motion.div
                   className={`nav-link font-semibold transition-colors duration-200 px-3 py-2 rounded-lg ${
                     isActive(item.path)
-                      ? "text-forest-700 border-b-2 border-forest-500 bg-forest-50 comic-shadow"
-                      : "text-forest-700 hover:text-comic-orange hover:bg-forest-50 hover:comic-shadow"
+                      ? "text-forest-700 border-b-2 border-forest-500 bg-forest-50 shadow-sm"
+                      : "text-forest-700 hover:text-comic-orange hover:bg-forest-50 hover:shadow-sm"
                   }`}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
