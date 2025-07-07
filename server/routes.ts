@@ -77,49 +77,60 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
         // If info check passed, proceed with download using multiple fallback strategies
         const downloadStrategies = [
-          // Strategy 1: Use bypass cookies and session persistence
-          [
-            '--extract-audio',
-            '--audio-format', 'mp3',
-            '--audio-quality', validatedData.quality.replace('k', ''),
-            '--output', outputPath,
-            '--no-playlist',
-            '--ignore-errors',
-            '--user-agent', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
-            '--referer', 'https://www.youtube.com/',
-            '--add-header', 'Accept:text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-            '--add-header', 'Accept-Language:en-us,en;q=0.5',
-            '--add-header', 'Sec-Fetch-Mode:navigate',
-            '--no-check-certificate',
-            '--format', '140/m4a',
-            '--extractor-retries', '10',
-            '--fragment-retries', '10',
-            '--retry-sleep', '5',
-            validatedData.url
-          ],
-          // Strategy 2: Use different extraction method
-          [
-            '--extract-audio',
-            '--audio-format', 'mp3',
-            '--audio-quality', validatedData.quality.replace('k', ''),
-            '--output', outputPath,
-            '--no-playlist',
-            '--ignore-errors', 
-            '--user-agent', 'facebookexternalhit/1.1',
-            '--no-check-certificate',
-            '--format', 'worst[height<=360]/worst',
-            validatedData.url
-          ],
-          // Strategy 3: Simple approach with basic parameters
-          [
-            '--extract-audio',
-            '--audio-format', 'mp3',
-            '--output', outputPath,
-            '--no-playlist',
-            '--ignore-errors',
-            '--format', '18',
-            validatedData.url
-          ]
+          // Strategy 1: Use Python yt-dlp with updated version
+          {
+            command: '/home/runner/workspace/.pythonlibs/bin/python',
+            args: [
+              '-m', 'yt_dlp',
+              '--extract-audio',
+              '--audio-format', 'mp3',
+              '--audio-quality', validatedData.quality.replace('k', ''),
+              '--output', outputPath,
+              '--no-playlist',
+              '--ignore-errors',
+              '--user-agent', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+              '--referer', 'https://www.youtube.com/',
+              '--no-check-certificate',
+              '--extractor-retries', '5',
+              '--fragment-retries', '5',
+              '--retry-sleep', '3',
+              '--sleep-interval', '1',
+              '--max-sleep-interval', '5',
+              validatedData.url
+            ]
+          },
+          // Strategy 2: Use system yt-dlp with alternative approach
+          {
+            command: 'yt-dlp',
+            args: [
+              '--extract-audio',
+              '--audio-format', 'mp3',
+              '--audio-quality', validatedData.quality.replace('k', ''),
+              '--output', outputPath,
+              '--no-playlist',
+              '--ignore-errors',
+              '--user-agent', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+              '--referer', 'https://www.youtube.com/',
+              '--no-check-certificate',
+              '--format', 'bestaudio[ext=m4a]/bestaudio',
+              '--extractor-retries', '3',
+              '--fragment-retries', '3',
+              '--retry-sleep', '2',
+              validatedData.url
+            ]
+          },
+          // Strategy 3: Simple fallback
+          {
+            command: 'yt-dlp',
+            args: [
+              '--extract-audio',
+              '--audio-format', 'mp3',
+              '--output', outputPath,
+              '--no-playlist',
+              '--ignore-errors',
+              validatedData.url
+            ]
+          }
         ];
 
         let currentStrategy = 0;
@@ -132,8 +143,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
             });
           }
 
-          const args = downloadStrategies[currentStrategy];
-          const ytDlp = spawn('yt-dlp', args);
+          const strategy = downloadStrategies[currentStrategy];
+          const ytDlp = spawn(strategy.command, strategy.args);
           let videoTitle = '';
           let error = '';
 
@@ -172,7 +183,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
                 });
               }
             } else {
-              console.error(`Strategy ${currentStrategy + 1} failed:`, error);
+              console.error(`Strategy ${currentStrategy + 1} (${strategy.command}) failed:`, error);
               // Check for specific YouTube blocking errors
               if (error.includes('HTTP Error 403') || error.includes('nsig extraction failed')) {
                 return res.status(429).json({ 
