@@ -30,44 +30,15 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
   // YouTube to MP3 conversion endpoint
   app.post("/api/convert", async (req, res) => {
-    let activeProcesses: any[] = [];
-    let requestComplete = false;
-    
-    // Cleanup function to kill all active processes
-    const cleanup = () => {
-      activeProcesses.forEach(process => {
-        try {
-          if (process && !process.killed) {
-            process.kill('SIGTERM');
-            // Force kill if still running after 1 second
-            setTimeout(() => {
-              if (!process.killed) {
-                process.kill('SIGKILL');
-              }
-            }, 1000);
-          }
-        } catch (e) {
-          // Ignore cleanup errors
-        }
-      });
-      activeProcesses = [];
-    };
-
     // Set timeout for the entire request
     const timeoutId = setTimeout(() => {
-      if (!requestComplete && !res.headersSent) {
-        requestComplete = true;
-        cleanup();
+      if (!res.headersSent) {
         res.status(408).json({ 
           success: false, 
           error: "Conversion timeout. Please try again with a shorter video or different URL." 
         });
       }
     }, 30000); // 30 second timeout
-
-    // Cleanup on request end/abort
-    req.on('close', cleanup);
-    req.on('aborted', cleanup);
 
     try {
       const validatedData = convertRequestSchema.parse(req.body);
@@ -89,265 +60,174 @@ export async function registerRoutes(app: Express): Promise<Server> {
         '--user-agent', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
         '--referer', 'https://www.youtube.com/',
         '--no-check-certificate',
-        '--socket-timeout', '15',
-        '--extractor-retries', '1',
+        '--socket-timeout', '30',
         validatedData.url
       ];
 
       // Check if video is accessible first (with timeout)
       const infoProcess = spawn('yt-dlp', infoArgs);
-      activeProcesses.push(infoProcess);
-      
       let infoOutput = '';
       let infoError = '';
       let infoResolved = false;
 
       // Set timeout for info check
       const infoTimeout = setTimeout(() => {
-        if (!infoResolved && !requestComplete) {
-          infoResolved = true;
-          try {
-            infoProcess.kill('SIGTERM');
-          } catch (e) {}
-          
-          if (!res.headersSent) {
-            requestComplete = true;
-            clearTimeout(timeoutId);
-            cleanup();
-            return res.status(408).json({ 
-              success: false, 
-              error: "Video info check timeout. The video might be too long or unavailable." 
-            });
-          }
+        if (!infoResolved) {
+          infoProcess.kill('SIGKILL');
+          clearTimeout(timeoutId);
+          return res.status(408).json({ 
+            success: false, 
+            error: "Video info check timeout. The video might be too long or unavailable." 
+          });
         }
-      }, 8000); // 8 second timeout for info check
+      }, 5000); // 5 second timeout for info check
 
       infoProcess.stdout.on('data', (data) => {
-        if (!requestComplete) {
-          infoOutput += data.toString();
-        }
+        infoOutput += data.toString();
       });
 
       infoProcess.stderr.on('data', (data) => {
-        if (!requestComplete) {
-          infoError += data.toString();
-        }
+        infoError += data.toString();
       });
 
       infoProcess.on('close', (infoCode) => {
-        if (requestComplete) return;
-        
         infoResolved = true;
         clearTimeout(infoTimeout);
         
         if (infoCode !== 0) {
           console.error('Video info error:', infoError);
-          requestComplete = true;
           clearTimeout(timeoutId);
-          cleanup();
-          
-          if (!res.headersSent) {
-            return res.status(400).json({ 
-              success: false, 
-              error: "Unable to access this video. It might be private, age-restricted, or unavailable in your region." 
-            });
-          }
-          return;
+          return res.status(400).json({ 
+            success: false, 
+            error: "Unable to access this video. It might be private, age-restricted, or unavailable in your region." 
+          });
         }
 
-        // If info check passed, proceed with conversion
-        const downloadArgs = [
-          '--extract-audio',
-          '--audio-format', 'mp3',
-          '--audio-quality', validatedData.quality || '128k',
-          '--output', outputPath,
-          '--no-playlist',
-          '--no-warnings',
-          '--socket-timeout', '15',
-          '--extractor-retries', '1',
-          '--fragment-retries', '1',
-          '--no-check-certificate',
-          '--format', 'bestaudio[ext=m4a]/bestaudio[ext=webm]/bestaudio/best[height<=480]',
-          validatedData.url
+        // If info check passed, proceed with ultra-fast conversion (5-8 seconds)
+        const downloadStrategies = [
+          // Ultra-fast strategy with aggressive optimization for 5-8 second conversion
+          {
+            command: 'yt-dlp',
+            args: [
+              '--extract-audio',
+              '--audio-format', 'mp3',
+              '--audio-quality', '0', // Use fastest conversion
+              '--output', outputPath,
+              '--no-playlist',
+              '--no-warnings',
+              '--quiet',
+              '--socket-timeout', '5',
+              '--extractor-retries', '1',
+              '--fragment-retries', '1',
+              '--no-check-certificate',
+              '--format', 'worstaudio[ext=m4a]/worstaudio[ext=webm]/worstaudio/worst[height<=360]',
+              '--postprocessor-args', 'ffmpeg:-ac 1 -ar 22050 -b:a 64k', // Mono, low sample rate, low bitrate for speed
+              validatedData.url
+            ]
+          }
         ];
 
-        const ytDlp = spawn('yt-dlp', downloadArgs);
-        activeProcesses.push(ytDlp);
-        
-        let videoTitle = '';
-        let error = '';
-        let downloadResolved = false;
+        let currentStrategy = 0;
 
-        // Set timeout for download
-        const downloadTimeout = setTimeout(() => {
-          if (!downloadResolved && !requestComplete) {
-            downloadResolved = true;
-            try {
-              ytDlp.kill('SIGTERM');
-            } catch (e) {}
-            
-            if (!res.headersSent) {
-              requestComplete = true;
-              clearTimeout(timeoutId);
-              cleanup();
-              return res.status(408).json({ 
-                success: false, 
-                error: "Download timeout. Please try again with a shorter video." 
-              });
-            }
+        function tryDownload() {
+          if (currentStrategy >= downloadStrategies.length) {
+            clearTimeout(timeoutId);
+            return res.status(500).json({ 
+              success: false, 
+              error: "All conversion methods failed. YouTube may be blocking requests temporarily. Please try again later." 
+            });
           }
-        }, 20000); // 20 second timeout for download
 
-        ytDlp.stdout.on('data', (data) => {
-          if (!requestComplete) {
+          const strategy = downloadStrategies[currentStrategy];
+          const ytDlp = spawn(strategy.command, strategy.args);
+          let videoTitle = '';
+          let error = '';
+          let downloadResolved = false;
+
+          // Set timeout for individual download attempt
+          const downloadTimeout = setTimeout(() => {
+            if (!downloadResolved) {
+              ytDlp.kill('SIGKILL');
+              console.log(`Strategy ${currentStrategy + 1} timed out, trying next...`);
+              currentStrategy++;
+              tryDownload();
+            }
+          }, 10000); // 10 second timeout per strategy
+
+          ytDlp.stdout.on('data', (data) => {
             const output = data.toString();
             // Extract title from yt-dlp output
             const titleMatch = output.match(/\[download\] Destination: (.+)/);
             if (titleMatch) {
               videoTitle = path.basename(titleMatch[1], '.mp3');
             }
-          }
-        });
+          });
 
-        ytDlp.stderr.on('data', (data) => {
-          if (!requestComplete) {
+          ytDlp.stderr.on('data', (data) => {
             error += data.toString();
-          }
-        });
+          });
 
-        ytDlp.on('close', (code) => {
-          if (requestComplete) return;
-          
-          downloadResolved = true;
-          clearTimeout(downloadTimeout);
-          
-          if (code === 0) {
-            requestComplete = true;
-            clearTimeout(timeoutId);
-            cleanup();
-            
-            try {
+          ytDlp.on('close', (code) => {
+            downloadResolved = true;
+            clearTimeout(downloadTimeout);
+            if (code === 0) {
+              clearTimeout(timeoutId);
               // Find the generated file
               const files = fs.readdirSync(tempDir).filter(f => f.startsWith(`audio_${timestamp}`));
               if (files.length > 0) {
                 const filePath = path.join(tempDir, files[0]);
                 
-                if (!res.headersSent) {
-                  // Serve the file for download
-                  res.download(filePath, `${videoTitle || 'audio'}.mp3`, (err) => {
-                    if (err) {
-                      console.error('Download error:', err);
-                    }
-                    // Clean up file after download
-                    setTimeout(() => {
-                      try {
-                        fs.unlink(filePath, () => {});
-                      } catch (e) {}
-                    }, 5000);
-                  });
-                }
+                // Serve the file for download
+                res.download(filePath, `${videoTitle || 'audio'}.mp3`, (err) => {
+                  if (err) {
+                    console.error('Download error:', err);
+                  }
+                  // Clean up file after download
+                  setTimeout(() => {
+                    fs.unlink(filePath, () => {});
+                  }, 5000); // Delay cleanup to ensure download completes
+                });
               } else {
-                if (!res.headersSent) {
-                  res.status(500).json({ 
-                    success: false, 
-                    error: "Conversion completed but file not found" 
-                  });
-                }
-              }
-            } catch (e) {
-              console.error('File handling error:', e);
-              if (!res.headersSent) {
+                clearTimeout(timeoutId);
                 res.status(500).json({ 
                   success: false, 
-                  error: "Error handling converted file" 
+                  error: "Conversion completed but file not found" 
                 });
               }
-            }
-          } else {
-            console.error('Download failed:', error);
-            
-            // Check for specific YouTube blocking errors
-            if (error.includes('HTTP Error 403') || error.includes('nsig extraction failed') || error.includes('Sign in to confirm')) {
-              requestComplete = true;
-              clearTimeout(timeoutId);
-              cleanup();
-              
-              if (!res.headersSent) {
+            } else {
+              console.error(`Strategy ${currentStrategy + 1} (${strategy.command}) failed:`, error);
+              // Check for specific YouTube blocking errors
+              if (error.includes('HTTP Error 403') || error.includes('nsig extraction failed') || error.includes('Sign in to confirm')) {
+                clearTimeout(timeoutId);
                 return res.status(429).json({ 
                   success: false, 
                   error: "YouTube is currently blocking download requests. This is a temporary issue affecting many YouTube downloaders. Please try again later or use a different video.",
                   details: "YouTube has implemented stronger anti-bot measures recently."
                 });
               }
-            } else {
-              requestComplete = true;
-              clearTimeout(timeoutId);
-              cleanup();
-              
-              if (!res.headersSent) {
-                res.status(500).json({ 
-                  success: false, 
-                  error: "Conversion failed. Please try again or use a different video URL." 
-                });
-              }
+              currentStrategy++;
+              tryDownload(); // Try next strategy
             }
-          }
-        });
-
-        ytDlp.on('error', (err) => {
-          if (!requestComplete) {
-            console.error('Process error:', err);
-            requestComplete = true;
-            clearTimeout(timeoutId);
-            cleanup();
-            
-            if (!res.headersSent) {
-              res.status(500).json({ 
-                success: false, 
-                error: "Process error during conversion" 
-              });
-            }
-          }
-        });
-      });
-
-      infoProcess.on('error', (err) => {
-        if (!requestComplete) {
-          console.error('Info process error:', err);
-          requestComplete = true;
-          clearTimeout(timeoutId);
-          cleanup();
-          
-          if (!res.headersSent) {
-            res.status(500).json({ 
-              success: false, 
-              error: "Error checking video information" 
-            });
-          }
+          });
         }
+
+        tryDownload();
       });
 
     } catch (error) {
-      requestComplete = true;
       clearTimeout(timeoutId);
-      cleanup();
-      
       if (error instanceof z.ZodError) {
-        if (!res.headersSent) {
-          res.status(400).json({ 
-            success: false, 
-            error: "Invalid request data", 
-            details: error.errors 
-          });
-        }
+        res.status(400).json({ 
+          success: false, 
+          error: "Invalid request data", 
+          details: error.errors 
+        });
       } else {
         console.error('Conversion error:', error);
-        if (!res.headersSent) {
-          res.status(500).json({ 
-            success: false, 
-            error: "Internal server error" 
-          });
-        }
+        res.status(500).json({ 
+          success: false, 
+          error: "Internal server error" 
+        });
       }
     }
   });
