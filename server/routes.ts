@@ -59,8 +59,11 @@ export async function registerRoutes(app: Express): Promise<Server> {
         '--get-duration',
         '--user-agent', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
         '--referer', 'https://www.youtube.com/',
+        '--add-header', 'Accept-Language:en-US,en;q=0.9',
         '--no-check-certificate',
         '--socket-timeout', '30',
+        '--extractor-retries', '3',
+        '--fragment-retries', '3',
         validatedData.url
       ];
 
@@ -95,33 +98,64 @@ export async function registerRoutes(app: Express): Promise<Server> {
         clearTimeout(infoTimeout);
         
         if (infoCode !== 0) {
-          console.error('Video info error:', infoError);
+          console.error('Video info error details:', infoError);
+          console.error('Video info code:', infoCode);
+          console.error('Video info output:', infoOutput);
           clearTimeout(timeoutId);
+          
+          // Check for specific error types
+          if (infoError.includes('HTTP Error 403') || infoError.includes('Sign in to confirm') || infoError.includes('nsig extraction failed')) {
+            return res.status(429).json({ 
+              success: false, 
+              error: "YouTube is currently blocking download requests. This is a temporary issue affecting many YouTube downloaders. Please try again later or use a different video.",
+              details: "YouTube has implemented stronger anti-bot measures recently."
+            });
+          }
+          
           return res.status(400).json({ 
             success: false, 
-            error: "Unable to access this video. It might be private, age-restricted, or unavailable in your region." 
+            error: "Unable to access this video. It might be private, age-restricted, or unavailable in your region.",
+            details: infoError || "No specific error details available"
           });
         }
 
         // If info check passed, proceed with ultra-fast conversion (5-8 seconds)
         const downloadStrategies = [
-          // Ultra-fast strategy with aggressive optimization for 5-8 second conversion
+          // Strategy 1: Ultra-fast with optimized settings
           {
             command: 'yt-dlp',
             args: [
               '--extract-audio',
               '--audio-format', 'mp3',
-              '--audio-quality', '0', // Use fastest conversion
+              '--audio-quality', validatedData.quality || '192',
               '--output', outputPath,
               '--no-playlist',
               '--no-warnings',
-              '--quiet',
-              '--socket-timeout', '5',
-              '--extractor-retries', '1',
-              '--fragment-retries', '1',
+              '--user-agent', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+              '--referer', 'https://www.youtube.com/',
+              '--add-header', 'Accept-Language:en-US,en;q=0.9',
+              '--socket-timeout', '30',
+              '--extractor-retries', '3',
+              '--fragment-retries', '3',
               '--no-check-certificate',
-              '--format', 'worstaudio[ext=m4a]/worstaudio[ext=webm]/worstaudio/worst[height<=360]',
-              '--postprocessor-args', 'ffmpeg:-ac 1 -ar 22050 -b:a 64k', // Mono, low sample rate, low bitrate for speed
+              '--format', 'bestaudio[ext=m4a]/bestaudio[ext=webm]/bestaudio/best[height<=480]',
+              validatedData.url
+            ]
+          },
+          // Strategy 2: Fallback with different format selection
+          {
+            command: 'yt-dlp',
+            args: [
+              '--extract-audio',
+              '--audio-format', 'mp3',
+              '--audio-quality', validatedData.quality || '192',
+              '--output', outputPath,
+              '--no-playlist',
+              '--user-agent', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+              '--referer', 'https://www.youtube.com/',
+              '--socket-timeout', '30',
+              '--no-check-certificate',
+              '--format', 'worst[ext=mp4]/worst',
               validatedData.url
             ]
           }
