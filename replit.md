@@ -2,7 +2,7 @@
 
 ## Overview
 
-EcoTube is a full-stack YouTube to MP3 conversion web application with an eco-friendly comic-style UI. The application allows users to convert YouTube videos to MP3 format with multiple quality options, featuring a sustainable design philosophy and user-friendly interface.
+EcoTube is a high-performance YouTube to MP3 conversion web application featuring a modern comic-style UI with eco-friendly aesthetics. The application provides fast, reliable video-to-audio conversion with optimized processing times (15-30 seconds), multiple quality options, and an intuitive user experience designed around sustainability themes.
 
 ## System Architecture
 
@@ -38,7 +38,7 @@ EcoTube is a full-stack YouTube to MP3 conversion web application with an eco-fr
 ### User Interface Components
 - **Navigation**: Responsive navigation with mobile menu support
 - **Conversion Form**: Input validation with URL verification and quality selection
-- **Loading States**: Custom animated loading spinner with eco-themed icons
+- **Loading States**: Inline button loading states with conversion progress indicators
 - **Result Display**: Download interface with file cleanup
 - **Contact System**: Form submission with backend message storage
 

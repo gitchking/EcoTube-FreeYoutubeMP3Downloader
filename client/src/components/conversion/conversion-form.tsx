@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { useMutation } from "@tanstack/react-query";
-import { Link, Zap, Sliders, Music } from "lucide-react";
+import { Link, Zap, Sliders, Music, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
@@ -78,13 +78,6 @@ export default function ConversionForm() {
     setConversionResult(null);
   };
 
-  if (convertMutation.isPending) {
-    return <LoadingSpinner 
-      message="Processing your video..." 
-      submessage="Extracting audio and optimizing quality - this takes 15-30 seconds" 
-    />;
-  }
-
   if (conversionResult) {
     return <ConversionResult result={conversionResult} onReset={handleReset} />;
   }
@@ -146,13 +139,27 @@ export default function ConversionForm() {
         >
           <Button 
             type="submit"
-            className="w-full bg-green-600 hover:bg-green-700 dark:bg-blue-600 dark:hover:bg-blue-700 text-white font-bold py-6 px-8 rounded-comic black-button-shadow transition-all duration-200 text-xl font-comic border-2 border-green-800 dark:border-blue-800"
+            className={`w-full font-bold py-6 px-8 rounded-comic black-button-shadow transition-all duration-200 text-xl font-comic border-2 ${
+              convertMutation.isPending 
+                ? 'bg-orange-500 hover:bg-orange-600 dark:bg-orange-600 dark:hover:bg-orange-700 border-orange-700 dark:border-orange-800 cursor-not-allowed'
+                : 'bg-green-600 hover:bg-green-700 dark:bg-blue-600 dark:hover:bg-blue-700 border-green-800 dark:border-blue-800'
+            } text-white`}
             disabled={convertMutation.isPending}
           >
-            <>
-              <Music className="text-white w-5 h-5" />
-              <span className="font-bold text-white">Convert</span>
-            </>
+            <div className="flex items-center justify-center space-x-3">
+              {convertMutation.isPending ? (
+                <>
+                  <Loader2 className="w-5 h-5 animate-spin" />
+                  <span className="font-bold">Converting...</span>
+                  <span className="text-sm opacity-80">(15-30s)</span>
+                </>
+              ) : (
+                <>
+                  <Music className="w-5 h-5" />
+                  <span className="font-bold">Convert to MP3</span>
+                </>
+              )}
+            </div>
           </Button>
         </motion.div>
       </form>
