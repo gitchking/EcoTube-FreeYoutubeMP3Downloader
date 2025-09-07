@@ -30,6 +30,16 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
   // YouTube to MP3 conversion endpoint
   app.post("/api/convert", async (req, res) => {
+    // Set timeout for the entire request
+    const timeoutId = setTimeout(() => {
+      if (!res.headersSent) {
+        res.status(408).json({ 
+          success: false, 
+          error: "Conversion timeout. Please try again with a shorter video or different URL." 
+        });
+      }
+    }, 120000); // 2 minute timeout
+
     try {
       const validatedData = convertRequestSchema.parse(req.body);
       
@@ -43,20 +53,34 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const timestamp = Date.now();
       const outputPath = path.join(tempDir, `audio_${timestamp}.%(ext)s`);
       
-      // First, try to get video info to check availability
+      // First, try to get video info to check availability (with timeout)
       const infoArgs = [
         '--get-title', 
         '--get-duration',
         '--user-agent', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
         '--referer', 'https://www.youtube.com/',
         '--no-check-certificate',
+        '--socket-timeout', '30',
         validatedData.url
       ];
 
-      // Check if video is accessible first
+      // Check if video is accessible first (with timeout)
       const infoProcess = spawn('yt-dlp', infoArgs);
       let infoOutput = '';
       let infoError = '';
+      let infoResolved = false;
+
+      // Set timeout for info check
+      const infoTimeout = setTimeout(() => {
+        if (!infoResolved) {
+          infoProcess.kill('SIGKILL');
+          clearTimeout(timeoutId);
+          return res.status(408).json({ 
+            success: false, 
+            error: "Video info check timeout. The video might be too long or unavailable." 
+          });
+        }
+      }, 30000); // 30 second timeout for info check
 
       infoProcess.stdout.on('data', (data) => {
         infoOutput += data.toString();
@@ -67,59 +91,41 @@ export async function registerRoutes(app: Express): Promise<Server> {
       });
 
       infoProcess.on('close', (infoCode) => {
+        infoResolved = true;
+        clearTimeout(infoTimeout);
+        
         if (infoCode !== 0) {
           console.error('Video info error:', infoError);
+          clearTimeout(timeoutId);
           return res.status(400).json({ 
             success: false, 
             error: "Unable to access this video. It might be private, age-restricted, or unavailable in your region." 
           });
         }
 
-        // If info check passed, proceed with download using multiple fallback strategies
+        // If info check passed, proceed with download using optimized strategies
         const downloadStrategies = [
-          // Strategy 1: Use Python yt-dlp with updated version
+          // Strategy 1: Fast conversion with optimized settings
           {
-            command: '/home/runner/workspace/.pythonlibs/bin/python',
+            command: 'yt-dlp',
             args: [
-              '-m', 'yt_dlp',
               '--extract-audio',
               '--audio-format', 'mp3',
               '--audio-quality', validatedData.quality.replace('k', ''),
               '--output', outputPath,
               '--no-playlist',
-              '--ignore-errors',
               '--user-agent', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
               '--referer', 'https://www.youtube.com/',
               '--no-check-certificate',
-              '--extractor-retries', '5',
-              '--fragment-retries', '5',
-              '--retry-sleep', '3',
-              '--sleep-interval', '1',
-              '--max-sleep-interval', '5',
+              '--socket-timeout', '30',
+              '--extractor-retries', '2',
+              '--fragment-retries', '2',
+              '--retry-sleep', '1',
+              '--format', 'bestaudio[ext=m4a]/bestaudio/best[height<=480]',
               validatedData.url
             ]
           },
-          // Strategy 2: Use system yt-dlp with alternative approach
-          {
-            command: 'yt-dlp',
-            args: [
-              '--extract-audio',
-              '--audio-format', 'mp3',
-              '--audio-quality', validatedData.quality.replace('k', ''),
-              '--output', outputPath,
-              '--no-playlist',
-              '--ignore-errors',
-              '--user-agent', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
-              '--referer', 'https://www.youtube.com/',
-              '--no-check-certificate',
-              '--format', 'bestaudio[ext=m4a]/bestaudio',
-              '--extractor-retries', '3',
-              '--fragment-retries', '3',
-              '--retry-sleep', '2',
-              validatedData.url
-            ]
-          },
-          // Strategy 3: Simple fallback
+          // Strategy 2: Simple fallback for problematic videos
           {
             command: 'yt-dlp',
             args: [
@@ -127,7 +133,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
               '--audio-format', 'mp3',
               '--output', outputPath,
               '--no-playlist',
-              '--ignore-errors',
+              '--socket-timeout', '30',
+              '--format', 'worst[ext=mp4]/worst',
               validatedData.url
             ]
           }
@@ -137,6 +144,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
         function tryDownload() {
           if (currentStrategy >= downloadStrategies.length) {
+            clearTimeout(timeoutId);
             return res.status(500).json({ 
               success: false, 
               error: "All conversion methods failed. YouTube may be blocking requests temporarily. Please try again later." 
@@ -147,6 +155,17 @@ export async function registerRoutes(app: Express): Promise<Server> {
           const ytDlp = spawn(strategy.command, strategy.args);
           let videoTitle = '';
           let error = '';
+          let downloadResolved = false;
+
+          // Set timeout for individual download attempt
+          const downloadTimeout = setTimeout(() => {
+            if (!downloadResolved) {
+              ytDlp.kill('SIGKILL');
+              console.log(`Strategy ${currentStrategy + 1} timed out, trying next...`);
+              currentStrategy++;
+              tryDownload();
+            }
+          }, 60000); // 1 minute timeout per strategy
 
           ytDlp.stdout.on('data', (data) => {
             const output = data.toString();
@@ -162,7 +181,10 @@ export async function registerRoutes(app: Express): Promise<Server> {
           });
 
           ytDlp.on('close', (code) => {
+            downloadResolved = true;
+            clearTimeout(downloadTimeout);
             if (code === 0) {
+              clearTimeout(timeoutId);
               // Find the generated file
               const files = fs.readdirSync(tempDir).filter(f => f.startsWith(`audio_${timestamp}`));
               if (files.length > 0) {
@@ -174,9 +196,12 @@ export async function registerRoutes(app: Express): Promise<Server> {
                     console.error('Download error:', err);
                   }
                   // Clean up file after download
-                  fs.unlink(filePath, () => {});
+                  setTimeout(() => {
+                    fs.unlink(filePath, () => {});
+                  }, 5000); // Delay cleanup to ensure download completes
                 });
               } else {
+                clearTimeout(timeoutId);
                 res.status(500).json({ 
                   success: false, 
                   error: "Conversion completed but file not found" 
@@ -185,7 +210,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
             } else {
               console.error(`Strategy ${currentStrategy + 1} (${strategy.command}) failed:`, error);
               // Check for specific YouTube blocking errors
-              if (error.includes('HTTP Error 403') || error.includes('nsig extraction failed')) {
+              if (error.includes('HTTP Error 403') || error.includes('nsig extraction failed') || error.includes('Sign in to confirm')) {
+                clearTimeout(timeoutId);
                 return res.status(429).json({ 
                   success: false, 
                   error: "YouTube is currently blocking download requests. This is a temporary issue affecting many YouTube downloaders. Please try again later or use a different video.",
@@ -202,6 +228,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       });
 
     } catch (error) {
+      clearTimeout(timeoutId);
       if (error instanceof z.ZodError) {
         res.status(400).json({ 
           success: false, 
@@ -209,6 +236,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
           details: error.errors 
         });
       } else {
+        console.error('Conversion error:', error);
         res.status(500).json({ 
           success: false, 
           error: "Internal server error" 
