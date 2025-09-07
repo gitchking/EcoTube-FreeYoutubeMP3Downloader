@@ -8,7 +8,6 @@ import NotFound from "@/pages/not-found";
 import Home from "@/pages/home";
 import FAQs from "@/pages/faqs";
 import Changelog from "@/pages/changelog";
-import Contact from "@/pages/contact";
 import Privacy from "@/pages/privacy";
 import Terms from "@/pages/terms";
 import Navigation from "@/components/layout/navigation";
@@ -23,7 +22,6 @@ function Router() {
           <Route path="/" component={Home} />
           <Route path="/faqs" component={FAQs} />
           <Route path="/changelog" component={Changelog} />
-          <Route path="/contact" component={Contact} />
           <Route path="/privacy" component={Privacy} />
           <Route path="/terms" component={Terms} />
           <Route component={NotFound} />

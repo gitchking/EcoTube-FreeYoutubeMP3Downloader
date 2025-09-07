@@ -96,18 +96,11 @@ export default function Terms() {
         </motion.div>
 
         <motion.div 
-          className="mt-12 space-y-6"
+          className="mt-12"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.8 }}
         >
-          <div className="bg-blue-100 dark:bg-blue-900 border-3 border-blue-300 dark:border-blue-700 rounded-comic p-6 border-2 border-black dark:border-white">
-            <h3 className="text-lg font-bold text-blue-700 dark:text-blue-300 mb-2 font-comic">Contact Information</h3>
-            <p className="text-blue-600 dark:text-blue-400 font-nunito">
-              For questions about these terms, contact us at <a href="mailto:legal@ecotube.com" className="font-semibold hover:text-comic-orange transition-colors">legal@ecotube.com</a>
-            </p>
-          </div>
-          
           <div className="bg-green-100 dark:bg-green-900 border-3 border-green-300 dark:border-green-700 rounded-comic p-6 border-2 border-black dark:border-white">
             <h3 className="text-lg font-bold text-green-700 dark:text-green-300 mb-2 font-comic">Fair Use Reminder</h3>
             <p className="text-green-600 dark:text-green-400 font-nunito">

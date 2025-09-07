@@ -41,7 +41,7 @@ export default function Navigation() {
               </div>
             </motion.div>
           </Link>
-          
+
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-6">
             {navItems.map((item) => (
@@ -61,7 +61,7 @@ export default function Navigation() {
             ))}
             <ThemeSwitch />
           </div>
-          
+
           {/* Mobile Menu Button */}
           <div className="md:hidden flex items-center space-x-2">
             <ThemeSwitch />
