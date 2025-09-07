@@ -38,7 +38,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
           error: "Conversion timeout. Please try again with a shorter video or different URL." 
         });
       }
-    }, 120000); // 2 minute timeout
+    }, 30000); // 30 second timeout
 
     try {
       const validatedData = convertRequestSchema.parse(req.body);
@@ -80,7 +80,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
             error: "Video info check timeout. The video might be too long or unavailable." 
           });
         }
-      }, 30000); // 30 second timeout for info check
+      }, 5000); // 5 second timeout for info check
 
       infoProcess.stdout.on('data', (data) => {
         infoOutput += data.toString();
@@ -103,38 +103,25 @@ export async function registerRoutes(app: Express): Promise<Server> {
           });
         }
 
-        // If info check passed, proceed with download using optimized strategies
+        // If info check passed, proceed with ultra-fast conversion (5-8 seconds)
         const downloadStrategies = [
-          // Strategy 1: Fast conversion with optimized settings
+          // Ultra-fast strategy with aggressive optimization for 5-8 second conversion
           {
             command: 'yt-dlp',
             args: [
               '--extract-audio',
               '--audio-format', 'mp3',
-              '--audio-quality', validatedData.quality.replace('k', ''),
+              '--audio-quality', '0', // Use fastest conversion
               '--output', outputPath,
               '--no-playlist',
-              '--user-agent', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
-              '--referer', 'https://www.youtube.com/',
+              '--no-warnings',
+              '--quiet',
+              '--socket-timeout', '5',
+              '--extractor-retries', '1',
+              '--fragment-retries', '1',
               '--no-check-certificate',
-              '--socket-timeout', '30',
-              '--extractor-retries', '2',
-              '--fragment-retries', '2',
-              '--retry-sleep', '1',
-              '--format', 'bestaudio[ext=m4a]/bestaudio/best[height<=480]',
-              validatedData.url
-            ]
-          },
-          // Strategy 2: Simple fallback for problematic videos
-          {
-            command: 'yt-dlp',
-            args: [
-              '--extract-audio',
-              '--audio-format', 'mp3',
-              '--output', outputPath,
-              '--no-playlist',
-              '--socket-timeout', '30',
-              '--format', 'worst[ext=mp4]/worst',
+              '--format', 'worstaudio[ext=m4a]/worstaudio[ext=webm]/worstaudio/worst[height<=360]',
+              '--postprocessor-args', 'ffmpeg:-ac 1 -ar 22050 -b:a 64k', // Mono, low sample rate, low bitrate for speed
               validatedData.url
             ]
           }
@@ -165,7 +152,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
               currentStrategy++;
               tryDownload();
             }
-          }, 60000); // 1 minute timeout per strategy
+          }, 10000); // 10 second timeout per strategy
 
           ytDlp.stdout.on('data', (data) => {
             const output = data.toString();

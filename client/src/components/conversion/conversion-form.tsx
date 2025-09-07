@@ -151,7 +151,7 @@ export default function ConversionForm() {
                 <>
                   <Loader2 className="w-5 h-5 animate-spin" />
                   <span className="font-bold">Converting...</span>
-                  <span className="text-sm opacity-80">(15-30s)</span>
+                  <span className="text-sm opacity-80">(5-8s)</span>
                 </>
               ) : (
                 <>

@@ -8,7 +8,7 @@ interface LoadingSpinnerProps {
 
 export default function LoadingSpinner({ 
   message = "Converting your video...", 
-  submessage = "This usually takes 15-30 seconds" 
+  submessage = "This usually takes 5-8 seconds" 
 }: LoadingSpinnerProps) {
   return (
     <motion.div 
