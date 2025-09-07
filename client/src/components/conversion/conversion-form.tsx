@@ -122,12 +122,12 @@ export default function ConversionForm() {
             <SelectTrigger className="w-full px-4 py-4 rounded-comic focus:outline-none font-nunito text-3xl bg-white dark:bg-black text-black dark:text-white transition-all duration-200 h-16">
               <SelectValue />
             </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="64k">64 kbps - Small file size</SelectItem>
-              <SelectItem value="128k">128 kbps - Good quality</SelectItem>
-              <SelectItem value="192k">192 kbps - High quality</SelectItem>
-              <SelectItem value="256k">256 kbps - Very high quality</SelectItem>
-              <SelectItem value="320k">320 kbps - Premium quality</SelectItem>
+            <SelectContent className="font-nunito text-xl">
+              <SelectItem value="64k" className="text-xl py-3">64 kbps - Small file size</SelectItem>
+              <SelectItem value="128k" className="text-xl py-3">128 kbps - Good quality</SelectItem>
+              <SelectItem value="192k" className="text-xl py-3">192 kbps - High quality</SelectItem>
+              <SelectItem value="256k" className="text-xl py-3">256 kbps - Very high quality</SelectItem>
+              <SelectItem value="320k" className="text-xl py-3">320 kbps - Premium quality</SelectItem>
             </SelectContent>
           </Select>
         </div>
