@@ -12,7 +12,6 @@ export default function Navigation() {
     { path: "/", label: "Home" },
     { path: "/faqs", label: "FAQs" },
     { path: "/changelog", label: "Changelog" },
-    { path: "/contact", label: "Contact" },
   ];
 
   const isActive = (path: string) => {
