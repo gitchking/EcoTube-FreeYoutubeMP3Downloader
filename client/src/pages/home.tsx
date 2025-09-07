@@ -53,7 +53,7 @@ export default function Home() {
           </motion.div>
           
           <motion.h2 
-            className="text-5xl font-bold text-forest-700 dark:text-white mb-4 font-comic"
+            className="text-5xl font-bold text-forest-700 dark:text-white mb-4 font-lato"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
