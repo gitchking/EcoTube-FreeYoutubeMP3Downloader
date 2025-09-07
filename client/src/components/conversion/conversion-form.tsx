@@ -119,7 +119,7 @@ export default function ConversionForm() {
             Audio Quality
           </Label>
           <Select value={quality} onValueChange={setQuality}>
-            <SelectTrigger className="w-full px-4 py-4 rounded-comic focus:outline-none font-nunito text-3xl bg-white dark:bg-black text-black dark:text-white transition-all duration-200 h-16">
+            <SelectTrigger className="w-full px-4 py-4 rounded-comic focus:outline-none font-nunito text-lg bg-white dark:bg-black text-black dark:text-white transition-all duration-200 h-16">
               <SelectValue />
             </SelectTrigger>
             <SelectContent className="font-nunito text-base">
