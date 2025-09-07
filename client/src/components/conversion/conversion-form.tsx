@@ -79,7 +79,10 @@ export default function ConversionForm() {
   };
 
   if (convertMutation.isPending) {
-    return <LoadingSpinner />;
+    return <LoadingSpinner 
+      message="Processing your video..." 
+      submessage="Extracting audio and optimizing quality - this takes 15-30 seconds" 
+    />;
   }
 
   if (conversionResult) {
