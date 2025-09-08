@@ -5,9 +5,10 @@
  * This script automates the deployment process to Render.com
  */
 
-const https = require('https');
-const fs = require('fs');
-const path = require('path');
+import https from 'https';
+import fs from 'fs';
+import path from 'path';
+import crypto from 'crypto';
 
 console.log('🚀 EcoTube YouTube Converter - Render Deployment');
 console.log('================================================');
@@ -26,7 +27,7 @@ const config = {
 };
 
 function generateSecretKey() {
-  return require('crypto').randomBytes(32).toString('hex');
+  return crypto.randomBytes(32).toString('hex');
 }
 
 function logStep(step, message) {
