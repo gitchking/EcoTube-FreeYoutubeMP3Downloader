@@ -8,7 +8,7 @@ RUN apk add --no-cache \
     make \
     g++ \
     ffmpeg \
-    && pip3 install --no-cache-dir yt-dlp
+    && pip3 install --no-cache-dir --break-system-packages yt-dlp
 
 # Set working directory
 WORKDIR /app
@@ -17,7 +17,7 @@ WORKDIR /app
 COPY package*.json ./
 
 # Install dependencies
-RUN npm ci --only=production
+RUN npm ci
 
 # Copy source code
 COPY . .
