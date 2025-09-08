@@ -34,7 +34,7 @@ function Router() {
 
 function App() {
   return (
-    <ThemeProvider defaultTheme="light" storageKey="ecotube-ui-theme">
+    <ThemeProvider defaultTheme="dark" storageKey="ecotube-ui-theme">
       <QueryClientProvider client={queryClient}>
         <TooltipProvider>
           <Toaster />

@@ -28,7 +28,7 @@ export default function ConversionForm() {
         return { 
           success: true, 
           downloadUrl,
-          title: `YouTube Audio - ${quality}` 
+          title: `YouTube Audio - ${data.quality}` 
         };
       } else {
         return await response.json();
@@ -47,12 +47,49 @@ export default function ConversionForm() {
           error: data.error || "An error occurred during conversion.",
           details: data.details
         });
+        
+        // Show toast for immediate feedback
+        toast({
+          title: "Conversion Failed",
+          description: data.error || "Please check the URL and try again.",
+          variant: "destructive",
+        });
       }
     },
     onError: (error: any) => {
+      console.error('Conversion mutation error:', error);
+      
+      let errorMessage = "Please check the URL and try again.";
+      let errorDetails = undefined;
+      
+      // Parse error response if it's from the server
+      if (error.message) {
+        try {
+          // Try to extract JSON error from the error message
+          const match = error.message.match(/\d+: (.+)/);
+          if (match) {
+            const errorData = JSON.parse(match[1]);
+            errorMessage = errorData.error || errorMessage;
+            errorDetails = errorData.details;
+          } else {
+            errorMessage = error.message;
+          }
+        } catch (e) {
+          // If parsing fails, use the original message
+          errorMessage = error.message;
+        }
+      }
+      
       setConversionResult({
         success: false,
-        error: error.message || "Please check the URL and try again."
+        error: errorMessage,
+        details: errorDetails
+      });
+      
+      toast({
+        title: "Conversion Failed",
+        description: errorMessage,
+        variant: "destructive",
       });
     },
   });
@@ -63,6 +100,17 @@ export default function ConversionForm() {
       toast({
         title: "URL Required",
         description: "Please enter a YouTube URL.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    // Validate YouTube URL format
+    const youtubeRegex = /^(https?:\/\/)?(www\.)?(youtube\.com|youtu\.be)\/.+/;
+    if (!youtubeRegex.test(url)) {
+      toast({
+        title: "Invalid URL",
+        description: "Please enter a valid YouTube URL.",
         variant: "destructive",
       });
       return;

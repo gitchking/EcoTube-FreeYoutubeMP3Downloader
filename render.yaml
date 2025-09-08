@@ -1,0 +1,18 @@
+# Render Deployment Configuration
+
+# Build Command: npm run build
+# Start Command: npm start
+
+# Environment Variables needed:
+# NODE_ENV=production
+# DATABASE_URL=your_postgresql_connection_string
+# SESSION_SECRET=your_super_secret_session_key
+
+# Render will automatically:
+# - Install dependencies with npm install
+# - Run the build command
+# - Start the application with npm start
+# - Provide FFmpeg and yt-dlp in the environment
+
+# Health Check:
+# Render will check http://yourapp.onrender.com/ for 200 status

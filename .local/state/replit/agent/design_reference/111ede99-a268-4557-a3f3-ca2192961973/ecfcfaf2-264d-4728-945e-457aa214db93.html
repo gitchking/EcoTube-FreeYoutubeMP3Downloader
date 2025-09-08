@@ -1,0 +1,592 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoTube - YouTube to MP3 Converter</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'forest': {
+                            100: '#E8F5E8',
+                            300: '#A8D5A8',
+                            500: '#4A7C59',
+                            700: '#2D5016',
+                            900: '#1A3009'
+                        },
+                        'ocean': {
+                            100: '#E0F4F7',
+                            300: '#87CEEB',
+                            500: '#4A90A4',
+                            700: '#2C5F70'
+                        },
+                        'cream': '#F5F5DC',
+                        'comic-orange': '#FF8C42',
+                        'comic-yellow': '#FAAD14'
+                    },
+                    fontFamily: {
+                        'comic': ['Comic Neue', 'Nunito', 'sans-serif'],
+                        'nunito': ['Nunito', 'sans-serif']
+                    },
+                    borderRadius: {
+                        'comic': '24px'
+                    },
+                    animation: {
+                        'bounce-soft': 'bounce 2s infinite',
+                        'glow': 'glow 2s ease-in-out infinite alternate',
+                        'slide-up': 'slideUp 0.5s ease-out',
+                    }
+                }
+            }
+        };
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@300;400;700&family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        @keyframes glow {
+            from { box-shadow: 0 0 20px rgba(74, 124, 89, 0.4); }
+            to { box-shadow: 0 0 30px rgba(74, 124, 89, 0.8), 0 0 40px rgba(74, 124, 89, 0.6); }
+        }
+        
+        @keyframes slideUp {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
+        .comic-shadow {
+            box-shadow: 8px 8px 0px rgba(45, 80, 22, 0.3);
+        }
+        
+        .comic-button-shadow {
+            box-shadow: 4px 4px 0px rgba(45, 80, 22, 0.4);
+            transition: all 0.2s ease;
+        }
+        
+        .comic-button-shadow:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 6px 6px 0px rgba(45, 80, 22, 0.4);
+        }
+        
+        .comic-button-shadow:active {
+            transform: translate(2px, 2px);
+            box-shadow: 2px 2px 0px rgba(45, 80, 22, 0.4);
+        }
+    </style>
+</head>
+<body class="bg-cream font-comic min-h-screen">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg sticky top-0 z-50 border-b-4 border-forest-300">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="flex justify-between items-center py-4">
+                <!-- Logo -->
+                <div class="flex items-center space-x-3">
+                    <div class="w-12 h-12 bg-forest-500 rounded-comic flex items-center justify-center comic-shadow">
+                        <i class="fas fa-leaf text-white text-xl"></i>
+                    </div>
+                    <div class="flex flex-col">
+                        <h1 class="text-2xl font-bold text-forest-700">EcoTube</h1>
+                        <p class="text-xs text-forest-500 font-nunito">Clean • Green • Convert</p>
+                    </div>
+                </div>
+                
+                <!-- Navigation Links -->
+                <div class="hidden md:flex space-x-6">
+                    <a href="#home" class="nav-link text-forest-700 hover:text-comic-orange font-semibold transition-colors duration-200 border-b-2 border-forest-500">Home</a>
+                    <a href="#faqs" class="nav-link text-forest-700 hover:text-comic-orange font-semibold transition-colors duration-200">FAQs</a>
+                    <a href="#changelog" class="nav-link text-forest-700 hover:text-comic-orange font-semibold transition-colors duration-200">Changelog</a>
+                    <a href="#contact" class="nav-link text-forest-700 hover:text-comic-orange font-semibold transition-colors duration-200">Contact</a>
+                </div>
+                
+                <!-- Mobile Menu Button -->
+                <button class="md:hidden w-10 h-10 bg-forest-500 rounded-lg flex items-center justify-center">
+                    <i class="fas fa-bars text-white"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Home Section -->
+    <section id="home" class="py-12 bg-gradient-to-br from-cream to-forest-100">
+        <div class="max-w-4xl mx-auto px-4">
+            <!-- Hero Header -->
+            <div class="text-center mb-12">
+                <!-- Beautiful forest landscape with tall pine trees and morning mist -->
+                <div class="w-32 h-32 mx-auto mb-6 bg-forest-500 rounded-full flex items-center justify-center comic-shadow animate-bounce-soft">
+                    <i class="fas fa-music text-white text-4xl"></i>
+                </div>
+                <h2 class="text-5xl font-bold text-forest-700 mb-4">YouTube to MP3</h2>
+                <p class="text-xl text-forest-600 font-nunito max-w-2xl mx-auto">
+                    Convert your favorite YouTube videos to high-quality MP3 files with our eco-friendly, lightning-fast converter! 🌿⚡
+                </p>
+            </div>
+
+            <!-- Conversion Card -->
+            <div class="bg-white rounded-comic p-8 comic-shadow max-w-2xl mx-auto">
+                <div class="space-y-6">
+                    <!-- URL Input -->
+                    <div>
+                        <label class="block text-lg font-bold text-forest-700 mb-3">
+                            <i class="fas fa-link text-comic-orange mr-2"></i>
+                            Paste YouTube URL
+                        </label>
+                        <div class="relative">
+                            <input 
+                                type="url" 
+                                placeholder="https://www.youtube.com/watch?v=..." 
+                                class="w-full px-4 py-4 border-3 border-forest-300 rounded-comic focus:border-forest-500 focus:outline-none focus:ring-4 focus:ring-forest-100 font-nunito text-lg transition-all duration-200"
+                                data-bind="conversionForm.url"
+                            >
+                            <div class="absolute right-4 top-4">
+                                <i class="fas fa-paste text-forest-300 text-xl cursor-pointer hover:text-forest-500 transition-colors"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Quality Selection -->
+                    <div>
+                        <label class="block text-lg font-bold text-forest-700 mb-3">
+                            <i class="fas fa-sliders-h text-comic-orange mr-2"></i>
+                            Audio Quality
+                        </label>
+                        <select class="w-full px-4 py-4 border-3 border-forest-300 rounded-comic focus:border-forest-500 focus:outline-none focus:ring-4 focus:ring-forest-100 font-nunito text-lg bg-white" data-bind="conversionForm.quality">
+                            <option value="64k">64 kbps - Small file size</option>
+                            <option value="128k" selected>128 kbps - Good quality</option>
+                            <option value="192k">192 kbps - High quality</option>
+                            <option value="256k">256 kbps - Very high quality</option>
+                            <option value="320k">320 kbps - Premium quality</option>
+                        </select>
+                    </div>
+
+                    <!-- Convert Button -->
+                    <button class="w-full bg-forest-500 hover:bg-forest-700 text-white font-bold py-6 px-8 rounded-comic comic-button-shadow transition-all duration-200 transform hover:scale-105 text-xl" data-event="click:handleConvert">
+                        <span class="flex items-center justify-center">
+                            <i class="fas fa-bolt text-comic-yellow mr-3 text-2xl"></i>
+                            POW! Convert Now
+                            <i class="fas fa-bolt text-comic-yellow ml-3 text-2xl"></i>
+                        </span>
+                    </button>
+
+                    <!-- Loading State (Hidden by default) -->
+                    <div class="hidden" id="loading-state" data-state="isLoading">
+                        <div class="bg-forest-100 rounded-comic p-6 text-center">
+                            <div class="animate-spin w-16 h-16 mx-auto mb-4 bg-forest-500 rounded-full flex items-center justify-center">
+                                <i class="fas fa-seedling text-white text-2xl"></i>
+                            </div>
+                            <p class="text-forest-700 font-bold text-lg">Converting your video... 🌱</p>
+                            <p class="text-forest-600 font-nunito">This usually takes 30-60 seconds</p>
+                        </div>
+                    </div>
+
+                    <!-- Success State (Hidden by default) -->
+                    <div class="hidden" id="success-state" data-state="conversionComplete">
+                        <div class="bg-green-100 border-3 border-green-300 rounded-comic p-6 text-center">
+                            <div class="w-16 h-16 mx-auto mb-4 bg-green-500 rounded-full flex items-center justify-center comic-shadow">
+                                <i class="fas fa-check text-white text-2xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-green-700 mb-2">Conversion Complete! 🎉</h3>
+                            <p class="text-green-600 font-nunito mb-4" data-bind="convertedVideo.title">Video Title Here</p>
+                            <button class="bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-comic comic-button-shadow">
+                                <i class="fas fa-download mr-2"></i>
+                                Download MP3
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Features Grid -->
+            <div class="grid md:grid-cols-3 gap-6 mt-12">
+                <div class="bg-white rounded-comic p-6 comic-shadow text-center">
+                    <div class="w-16 h-16 mx-auto mb-4 bg-ocean-500 rounded-full flex items-center justify-center">
+                        <i class="fas fa-rocket text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-forest-700 mb-2">Lightning Fast</h3>
+                    <p class="text-forest-600 font-nunito">Convert videos in seconds with our optimized processing</p>
+                </div>
+
+                <div class="bg-white rounded-comic p-6 comic-shadow text-center">
+                    <div class="w-16 h-16 mx-auto mb-4 bg-green-500 rounded-full flex items-center justify-center">
+                        <i class="fas fa-shield-alt text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-forest-700 mb-2">100% Secure</h3>
+                    <p class="text-forest-600 font-nunito">Your data is never stored. Convert and download instantly</p>
+                </div>
+
+                <div class="bg-white rounded-comic p-6 comic-shadow text-center">
+                    <div class="w-16 h-16 mx-auto mb-4 bg-comic-orange rounded-full flex items-center justify-center">
+                        <i class="fas fa-leaf text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-forest-700 mb-2">Eco-Friendly</h3>
+                    <p class="text-forest-600 font-nunito">Powered by green energy and optimized for efficiency</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQs Section -->
+    <section id="faqs" class="py-12 bg-white">
+        <div class="max-w-4xl mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold text-forest-700 mb-4">Frequently Asked Questions</h2>
+                <p class="text-xl text-forest-600 font-nunito">Everything you need to know about EcoTube</p>
+            </div>
+
+            <div class="space-y-4">
+                <!-- FAQ Item 1 -->
+                <div class="bg-forest-50 rounded-comic overflow-hidden comic-shadow">
+                    <button class="w-full px-6 py-4 text-left flex items-center justify-between hover:bg-forest-100 transition-colors" onclick="toggleFAQ(this)">
+                        <div class="flex items-center">
+                            <div class="w-8 h-8 bg-forest-500 rounded-full flex items-center justify-center mr-4">
+                                <i class="fas fa-gavel text-white text-sm"></i>
+                            </div>
+                            <span class="font-bold text-forest-700">Is it legal to convert YouTube videos to MP3?</span>
+                        </div>
+                        <i class="fas fa-chevron-down text-forest-500 transform transition-transform duration-200"></i>
+                    </button>
+                    <div class="faq-content hidden px-6 pb-6">
+                        <p class="text-forest-600 font-nunito pl-12">Yes, for personal use and content you own or have permission to convert. Always respect copyright laws and YouTube's terms of service.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 2 -->
+                <div class="bg-forest-50 rounded-comic overflow-hidden comic-shadow">
+                    <button class="w-full px-6 py-4 text-left flex items-center justify-between hover:bg-forest-100 transition-colors" onclick="toggleFAQ(this)">
+                        <div class="flex items-center">
+                            <div class="w-8 h-8 bg-ocean-500 rounded-full flex items-center justify-center mr-4">
+                                <i class="fas fa-clock text-white text-sm"></i>
+                            </div>
+                            <span class="font-bold text-forest-700">How long does the conversion take?</span>
+                        </div>
+                        <i class="fas fa-chevron-down text-forest-500 transform transition-transform duration-200"></i>
+                    </button>
+                    <div class="faq-content hidden px-6 pb-6">
+                        <p class="text-forest-600 font-nunito pl-12">Most conversions complete within 30-60 seconds, depending on video length and selected quality. Our eco-optimized servers ensure fast processing!</p>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 3 -->
+                <div class="bg-forest-50 rounded-comic overflow-hidden comic-shadow">
+                    <button class="w-full px-6 py-4 text-left flex items-center justify-between hover:bg-forest-100 transition-colors" onclick="toggleFAQ(this)">
+                        <div class="flex items-center">
+                            <div class="w-8 h-8 bg-comic-orange rounded-full flex items-center justify-center mr-4">
+                                <i class="fas fa-music text-white text-sm"></i>
+                            </div>
+                            <span class="font-bold text-forest-700">What audio quality options are available?</span>
+                        </div>
+                        <i class="fas fa-chevron-down text-forest-500 transform transition-transform duration-200"></i>
+                    </button>
+                    <div class="faq-content hidden px-6 pb-6">
+                        <p class="text-forest-600 font-nunito pl-12">We offer 5 quality levels: 64kbps (small files), 128kbps (good quality), 192kbps (high quality), 256kbps (very high), and 320kbps (premium quality).</p>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 4 -->
+                <div class="bg-forest-50 rounded-comic overflow-hidden comic-shadow">
+                    <button class="w-full px-6 py-4 text-left flex items-center justify-between hover:bg-forest-100 transition-colors" onclick="toggleFAQ(this)">
+                        <div class="flex items-center">
+                            <div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center mr-4">
+                                <i class="fas fa-lock text-white text-sm"></i>
+                            </div>
+                            <span class="font-bold text-forest-700">Do you store my converted files?</span>
+                        </div>
+                        <i class="fas fa-chevron-down text-forest-500 transform transition-transform duration-200"></i>
+                    </button>
+                    <div class="faq-content hidden px-6 pb-6">
+                        <p class="text-forest-600 font-nunito pl-12">No! We prioritize your privacy. Files are converted in real-time and automatically deleted after download. We never store your personal data or files.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Changelog Section -->
+    <section id="changelog" class="py-12 bg-forest-50">
+        <div class="max-w-4xl mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold text-forest-700 mb-4">Changelog</h2>
+                <p class="text-xl text-forest-600 font-nunito">Latest updates and improvements</p>
+            </div>
+
+            <div class="space-y-6">
+                <!-- Version 2.1.0 -->
+                <div class="bg-white rounded-comic p-6 comic-shadow">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center">
+                            <div class="w-12 h-12 bg-forest-500 rounded-full flex items-center justify-center mr-4">
+                                <i class="fas fa-star text-white"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-forest-700">Version 2.1.0</h3>
+                                <p class="text-forest-500 font-nunito">Released: January 15, 2024</p>
+                            </div>
+                        </div>
+                        <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm font-bold">Latest</span>
+                    </div>
+                    <ul class="text-forest-600 font-nunito space-y-2">
+                        <li class="flex items-center"><i class="fas fa-plus text-green-500 mr-2"></i> Added 320kbps premium quality option</li>
+                        <li class="flex items-center"><i class="fas fa-bolt text-comic-orange mr-2"></i> 40% faster conversion speeds</li>
+                        <li class="flex items-center"><i class="fas fa-mobile-alt text-ocean-500 mr-2"></i> Improved mobile interface</li>
+                        <li class="flex items-center"><i class="fas fa-leaf text-forest-500 mr-2"></i> Reduced server energy consumption by 25%</li>
+                    </ul>
+                </div>
+
+                <!-- Version 2.0.0 -->
+                <div class="bg-white rounded-comic p-6 comic-shadow">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center">
+                            <div class="w-12 h-12 bg-ocean-500 rounded-full flex items-center justify-center mr-4">
+                                <i class="fas fa-rocket text-white"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-forest-700">Version 2.0.0</h3>
+                                <p class="text-forest-500 font-nunito">Released: December 1, 2023</p>
+                            </div>
+                        </div>
+                    </div>
+                    <ul class="text-forest-600 font-nunito space-y-2">
+                        <li class="flex items-center"><i class="fas fa-paint-brush text-comic-orange mr-2"></i> Complete UI redesign with eco-comic theme</li>
+                        <li class="flex items-center"><i class="fas fa-shield-alt text-green-500 mr-2"></i> Enhanced security and privacy protection</li>
+                        <li class="flex items-center"><i class="fas fa-cogs text-forest-500 mr-2"></i> Backend optimization for better performance</li>
+                    </ul>
+                </div>
+
+                <!-- Version 1.5.2 -->
+                <div class="bg-white rounded-comic p-6 comic-shadow">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center">
+                            <div class="w-12 h-12 bg-comic-orange rounded-full flex items-center justify-center mr-4">
+                                <i class="fas fa-bug text-white"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-forest-700">Version 1.5.2</h3>
+                                <p class="text-forest-500 font-nunito">Released: November 10, 2023</p>
+                            </div>
+                        </div>
+                    </div>
+                    <ul class="text-forest-600 font-nunito space-y-2">
+                        <li class="flex items-center"><i class="fas fa-wrench text-forest-500 mr-2"></i> Fixed conversion errors for long videos</li>
+                        <li class="flex items-center"><i class="fas fa-chart-line text-ocean-500 mr-2"></i> Improved conversion success rate to 99.8%</li>
+                        <li class="flex items-center"><i class="fas fa-globe text-green-500 mr-2"></i> Added support for more YouTube URL formats</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-12 bg-white">
+        <div class="max-w-2xl mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold text-forest-700 mb-4">Get in Touch</h2>
+                <p class="text-xl text-forest-600 font-nunito">Have questions or feedback? We'd love to hear from you!</p>
+            </div>
+
+            <div class="bg-forest-50 rounded-comic p-8 comic-shadow">
+                <form class="space-y-6" data-implementation="Should submit to Parse backend /api/contact endpoint">
+                    <!-- Name Field -->
+                    <div>
+                        <label class="block text-lg font-bold text-forest-700 mb-3">
+                            <i class="fas fa-user text-comic-orange mr-2"></i>
+                            Your Name
+                        </label>
+                        <input 
+                            type="text" 
+                            placeholder="Enter your full name" 
+                            class="w-full px-4 py-4 border-3 border-forest-300 rounded-comic focus:border-forest-500 focus:outline-none focus:ring-4 focus:ring-forest-100 font-nunito text-lg transition-all duration-200"
+                            data-bind="contactForm.name"
+                            required
+                        >
+                    </div>
+
+                    <!-- Email Field -->
+                    <div>
+                        <label class="block text-lg font-bold text-forest-700 mb-3">
+                            <i class="fas fa-envelope text-comic-orange mr-2"></i>
+                            Email Address
+                        </label>
+                        <input 
+                            type="email" 
+                            placeholder="your.email@example.com" 
+                            class="w-full px-4 py-4 border-3 border-forest-300 rounded-comic focus:border-forest-500 focus:outline-none focus:ring-4 focus:ring-forest-100 font-nunito text-lg transition-all duration-200"
+                            data-bind="contactForm.email"
+                            required
+                        >
+                    </div>
+
+                    <!-- Message Field -->
+                    <div>
+                        <label class="block text-lg font-bold text-forest-700 mb-3">
+                            <i class="fas fa-comment text-comic-orange mr-2"></i>
+                            Your Message
+                        </label>
+                        <textarea 
+                            rows="6" 
+                            placeholder="Tell us what's on your mind..." 
+                            class="w-full px-4 py-4 border-3 border-forest-300 rounded-comic focus:border-forest-500 focus:outline-none focus:ring-4 focus:ring-forest-100 font-nunito text-lg transition-all duration-200 resize-none"
+                            data-bind="contactForm.message"
+                            required
+                        ></textarea>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <button type="submit" class="w-full bg-forest-500 hover:bg-forest-700 text-white font-bold py-4 px-8 rounded-comic comic-button-shadow transition-all duration-200 transform hover:scale-105 text-lg" data-event="click:handleContactSubmit">
+                        <span class="flex items-center justify-center">
+                            <i class="fas fa-paper-plane text-white mr-3"></i>
+                            Send Message
+                            <i class="fas fa-heart text-comic-orange ml-3"></i>
+                        </span>
+                    </button>
+                </form>
+
+                <!-- Success Message (Hidden by default) -->
+                <div class="hidden mt-6" id="contact-success" data-state="contactSuccess">
+                    <div class="bg-green-100 border-3 border-green-300 rounded-comic p-6 text-center">
+                        <div class="w-16 h-16 mx-auto mb-4 bg-green-500 rounded-full flex items-center justify-center comic-shadow animate-bounce-soft">
+                            <i class="fas fa-check text-white text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-green-700 mb-2">Message Sent! 🌟</h3>
+                        <p class="text-green-600 font-nunito">Thanks for reaching out! We'll get back to you within 24 hours.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-forest-700 text-white py-8">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="flex items-center space-x-3 mb-4 md:mb-0">
+                    <div class="w-10 h-10 bg-white rounded-comic flex items-center justify-center">
+                        <i class="fas fa-leaf text-forest-700"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold">EcoTube</h3>
+                        <p class="text-forest-300 font-nunito text-sm">Sustainable Converting</p>
+                    </div>
+                </div>
+                
+                <div class="flex space-x-6 text-sm font-nunito">
+                    <a href="#" class="hover:text-comic-orange transition-colors">Privacy Policy</a>
+                    <a href="#" class="hover:text-comic-orange transition-colors">Terms of Service</a>
+                    <a href="#" class="hover:text-comic-orange transition-colors">Carbon Neutral</a>
+                </div>
+            </div>
+            
+            <div class="border-t border-forest-500 mt-6 pt-6 text-center">
+                <p class="text-forest-300 font-nunito">&copy; 2024 EcoTube. Powered by renewable energy 🌱</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        (function() {
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                        
+                        // Update active nav link
+                        document.querySelectorAll('.nav-link').forEach(link => {
+                            link.classList.remove('border-b-2', 'border-forest-500');
+                        });
+                        this.classList.add('border-b-2', 'border-forest-500');
+                    }
+                });
+            });
+        })();
+
+        // FAQ Toggle Functionality
+        function toggleFAQ(button) {
+            const content = button.nextElementSibling;
+            const icon = button.querySelector('.fa-chevron-down');
+            
+            if (content.classList.contains('hidden')) {
+                content.classList.remove('hidden');
+                content.style.animation = 'slideUp 0.3s ease-out';
+                icon.style.transform = 'rotate(180deg)';
+            } else {
+                content.classList.add('hidden');
+                icon.style.transform = 'rotate(0deg)';
+            }
+        }
+
+        // Form Handling (Mockup - TODO: Implement actual form submission)
+        (function() {
+            // Conversion form handling
+            const convertButton = document.querySelector('[data-event="click:handleConvert"]');
+            if (convertButton) {
+                convertButton.addEventListener('click', function() {
+                    // TODO: Implement actual YouTube URL validation and conversion
+                    console.log('Convert button clicked - implement ytdl-core integration');
+                    
+                    // Show loading state
+                    const loadingState = document.getElementById('loading-state');
+                    if (loadingState) {
+                        loadingState.classList.remove('hidden');
+                        
+                        // Simulate conversion process
+                        setTimeout(() => {
+                            loadingState.classList.add('hidden');
+                            const successState = document.getElementById('success-state');
+                            if (successState) {
+                                successState.classList.remove('hidden');
+                            }
+                        }, 3000);
+                    }
+                });
+            }
+
+            // Contact form handling
+            const contactForm = document.querySelector('form');
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    // TODO: Implement Parse backend integration for contact form
+                    console.log('Contact form submitted - implement Parse SDK integration');
+                    
+                    const successDiv = document.getElementById('contact-success');
+                    if (successDiv) {
+                        successDiv.classList.remove('hidden');
+                        contactForm.style.display = 'none';
+                    }
+                });
+            }
+        })();
+
+        // Add scroll animations
+        (function() {
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.animation = 'slideUp 0.6s ease-out';
+                        entry.target.style.opacity = '1';
+                    }
+                });
+            }, observerOptions);
+
+            // Observe elements for animation
+            document.querySelectorAll('.comic-shadow').forEach(el => {
+                el.style.opacity = '0';
+                observer.observe(el);
+            });
+        })();
+    </script>
+</body>
+</html>

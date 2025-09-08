@@ -31,7 +31,14 @@ export default function ConversionResult({ result, onReset }: ConversionResultPr
 
   const isYouTubeBlocking = result.error?.includes('YouTube is currently blocking') || 
                             result.error?.includes('HTTP Error 403') ||
-                            result.error?.includes('nsig extraction failed');
+                            result.error?.includes('nsig extraction failed') ||
+                            result.error?.includes('Sign in to confirm');
+                            
+  const isPrivateVideo = result.error?.includes('private') ||
+                         result.error?.includes('Members-only') ||
+                         result.error?.includes('unavailable in your region');
+                         
+  const isTimeout = result.error?.includes('timeout') || result.error?.includes('Timeout');
 
   // Error State
   if (!result.success) {
@@ -46,6 +53,10 @@ export default function ConversionResult({ result, onReset }: ConversionResultPr
           className={`w-16 h-16 mx-auto mb-4 rounded-full flex items-center justify-center comic-shadow border-4 ${
             isYouTubeBlocking 
               ? 'bg-orange-200 border-orange-400' 
+              : isPrivateVideo
+              ? 'bg-purple-200 border-purple-400'
+              : isTimeout
+              ? 'bg-yellow-200 border-yellow-400'
               : 'bg-red-200 border-red-400'
           }`}
           initial={{ scale: 0 }}
@@ -54,20 +65,30 @@ export default function ConversionResult({ result, onReset }: ConversionResultPr
         >
           {isYouTubeBlocking ? (
             <Clock className="text-orange-800 w-6 h-6" />
+          ) : isTimeout ? (
+            <Clock className="text-yellow-800 w-6 h-6" />
           ) : (
-            <AlertCircle className="text-red-800 w-6 h-6" />
+            <AlertCircle className={`w-6 h-6 ${
+              isPrivateVideo ? 'text-purple-800' : 'text-red-800'
+            }`} />
           )}
         </motion.div>
         
         <motion.h3 
           className={`text-xl font-bold mb-4 font-comic ${
-            isYouTubeBlocking ? 'text-orange-700 dark:text-orange-300' : 'text-red-700 dark:text-red-300'
+            isYouTubeBlocking ? 'text-orange-700 dark:text-orange-300' 
+            : isPrivateVideo ? 'text-purple-700 dark:text-purple-300'
+            : isTimeout ? 'text-yellow-700 dark:text-yellow-300'
+            : 'text-red-700 dark:text-red-300'
           }`}
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.3, delay: 0.3 }}
         >
-          {isYouTubeBlocking ? 'YouTube Temporarily Blocking Requests' : 'Conversion Failed'}
+          {isYouTubeBlocking ? 'YouTube Temporarily Blocking Requests' 
+           : isPrivateVideo ? 'Video Access Restricted'
+           : isTimeout ? 'Conversion Timeout'
+           : 'Conversion Failed'}
         </motion.h3>
         
         <motion.div 
@@ -76,7 +97,12 @@ export default function ConversionResult({ result, onReset }: ConversionResultPr
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.3, delay: 0.4 }}
         >
-          <Alert className={`${isYouTubeBlocking ? 'border-orange-300 bg-orange-50' : 'border-red-300 bg-red-50'}`}>
+          <Alert className={`${
+            isYouTubeBlocking ? 'border-orange-300 bg-orange-50' 
+            : isPrivateVideo ? 'border-purple-300 bg-purple-50'
+            : isTimeout ? 'border-yellow-300 bg-yellow-50'
+            : 'border-red-300 bg-red-50'
+          }`}>
             <AlertDescription className="text-sm font-nunito text-left">
               <strong>Error:</strong> {result.error}
               {result.details && (
@@ -84,13 +110,24 @@ export default function ConversionResult({ result, onReset }: ConversionResultPr
                   {result.details}
                 </div>
               )}
-              {isYouTubeBlocking && (
+              {(isYouTubeBlocking || isTimeout) && (
                 <div className="mt-3 text-sm">
                   <strong>What to try:</strong>
                   <ul className="list-disc list-inside mt-1 space-y-1">
                     <li>Wait a few minutes and try again</li>
                     <li>Try a different YouTube video</li>
                     <li>Check if the video is public and not restricted</li>
+                    {isTimeout && <li>Try with a shorter video</li>}
+                  </ul>
+                </div>
+              )}
+              {isPrivateVideo && (
+                <div className="mt-3 text-sm">
+                  <strong>What to try:</strong>
+                  <ul className="list-disc list-inside mt-1 space-y-1">
+                    <li>Make sure the video is public</li>
+                    <li>Try a different YouTube video</li>
+                    <li>Check if you have access to the video</li>
                   </ul>
                 </div>
               )}
@@ -109,6 +146,10 @@ export default function ConversionResult({ result, onReset }: ConversionResultPr
             className={`font-bold py-3 px-6 rounded-comic comic-button-shadow font-comic text-white ${
               isYouTubeBlocking 
                 ? 'bg-orange-500 hover:bg-orange-600' 
+                : isPrivateVideo
+                ? 'bg-purple-500 hover:bg-purple-600'
+                : isTimeout
+                ? 'bg-yellow-500 hover:bg-yellow-600'
                 : 'bg-red-500 hover:bg-red-600'
             }`}
           >
