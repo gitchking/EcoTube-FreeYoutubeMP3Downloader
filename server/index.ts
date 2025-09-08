@@ -58,7 +58,7 @@ app.use((req, res, next) => {
 
   // Serve the app on the configured port
   // this serves both the API and the client.
-  const port = process.env.PORT || 5000;
+  const port = Number(process.env.PORT) || 5000;
   const host = process.env.NODE_ENV === 'production' ? '0.0.0.0' : 'localhost';
   server.listen(port, host, () => {
     log(`serving on port ${port}`);
