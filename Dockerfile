@@ -28,12 +28,12 @@ RUN npm run build
 # Create temp directory for file processing
 RUN mkdir -p /app/temp
 
-# Expose port (Fly.io will set this automatically)
-EXPOSE 8080
+# Expose port (Koyeb uses 8000)
+EXPOSE 8000
 
 # Set environment to production
 ENV NODE_ENV=production
-ENV PORT=8080
+ENV PORT=8000
 
 # Start the application
 CMD ["npm", "start"]
