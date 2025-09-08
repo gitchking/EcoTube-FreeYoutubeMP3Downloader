@@ -1,0 +1,34 @@
+# Back4App Container Configuration
+# This file configures the YouTube Converter for Back4App deployment
+
+name: ecotube-youtube-converter
+image: 
+  dockerfile: Dockerfile
+  context: .
+
+resources:
+  memory: 512Mi
+  cpu: 0.5
+
+networking:
+  ports:
+    - port: 8080
+      protocol: HTTP
+
+environment:
+  - name: NODE_ENV
+    value: production
+  - name: PORT
+    value: "8080"
+
+healthcheck:
+  httpGet:
+    path: /
+    port: 8080
+  initialDelaySeconds: 30
+  periodSeconds: 10
+
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 1

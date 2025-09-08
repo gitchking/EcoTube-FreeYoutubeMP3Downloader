@@ -16,24 +16,27 @@ WORKDIR /app
 # Copy package files
 COPY package*.json ./
 
-# Install dependencies
+# Install dependencies (including dev dependencies for build)
 RUN npm ci --include=dev
 
 # Copy source code
 COPY . .
 
-# Build the application
-RUN npm run build
+# Build the application using npx commands
+RUN npx vite build && npx esbuild server/index.ts --platform=node --packages=external --bundle --format=esm --outdir=dist
 
 # Create temp directory for file processing
 RUN mkdir -p /app/temp
 
-# Expose port (Koyeb uses 8000)
-EXPOSE 8000
+# Expose port (Back4App uses 8080)
+EXPOSE 8080
 
 # Set environment to production
 ENV NODE_ENV=production
-ENV PORT=8000
+ENV PORT=8080
+
+# Ensure server binds to 0.0.0.0 for container access
+ENV HOST=0.0.0.0
 
 # Start the application
 CMD ["npm", "start"]
