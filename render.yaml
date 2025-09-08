@@ -1,18 +1,32 @@
-# Render Deployment Configuration
+# Render Infrastructure as Code
+# This file configures your YouTube Converter for deployment
 
-# Build Command: npm run build
-# Start Command: npm start
+services:
+  - type: web
+    name: ecotube-youtube-converter
+    env: node
+    region: ohio # or oregon, singapore, frankfurt
+    plan: free # starter for better performance
+    branch: main
+    repo: https://github.com/gitchking/EcoTube-FreeYoutubeMP3Downloader.git
+    buildCommand: npm run build
+    startCommand: npm start
+    healthCheckPath: /
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: SESSION_SECRET
+        generateValue: true # Render will generate a secure random value
+      - key: PORT
+        value: 5000
 
-# Environment Variables needed:
-# NODE_ENV=production
-# DATABASE_URL=your_postgresql_connection_string
-# SESSION_SECRET=your_super_secret_session_key
+# Optional: PostgreSQL Database
+# Uncomment below if you want a database
+# databases:
+#   - name: ecotube-postgres
+#     plan: free
+#     databaseName: ecotube_db
+#     user: ecotube_user
 
-# Render will automatically:
-# - Install dependencies with npm install
-# - Run the build command
-# - Start the application with npm start
-# - Provide FFmpeg and yt-dlp in the environment
-
-# Health Check:
-# Render will check http://yourapp.onrender.com/ for 200 status
+# The service will automatically get FFmpeg and yt-dlp from the system
+# No additional setup needed for media processing
