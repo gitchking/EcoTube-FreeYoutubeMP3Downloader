@@ -17,7 +17,7 @@ WORKDIR /app
 COPY package*.json ./
 
 # Install dependencies
-RUN npm ci
+RUN npm ci --include=dev
 
 # Copy source code
 COPY . .
@@ -28,11 +28,12 @@ RUN npm run build
 # Create temp directory for file processing
 RUN mkdir -p /app/temp
 
-# Expose port (Railway will override this)
-EXPOSE $PORT
+# Expose port (Fly.io will set this automatically)
+EXPOSE 8080
 
 # Set environment to production
 ENV NODE_ENV=production
+ENV PORT=8080
 
 # Start the application
 CMD ["npm", "start"]
